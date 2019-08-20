@@ -1,0 +1,18 @@
+baseURL = "https://math.berkeley.edu/~hadfield/"
+languageCode = "en-us"
+title = "Charles Hadfield's website"
+
+relativeURLs = true
+#canonifyURLs = true
+#uglyURLs = true
+
+[author]
+        name = "Charles Hadfield"
+        github = "charleshadfield"
+
+[params]
+        mathjax = true
+        math = true
+
+[blackfriday]
+        extensionsmask = ["backslashLineBreak"]

@@ -1,0 +1,19 @@
+<a href="{{ .Site.BaseURL }}">About</a>
+<a href="{{ "research" | absURL }}">Research</a>
+<a href="{{ "teaching" | absURL }}">Teaching</a>
+<a href="{{ "wind" | absURL }}">Wind</a>
+<a href="{{ "post" | absURL }}">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+<!--
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+    <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}">{{ $name }}</a>
+    {{ end }}
+  </div>
+</div>
+<a href="{{ "/post/index.xml" | absURL }}" type="application/rss+xml" target="_blank"><img class="feedicon" src="{{ "/img/feed-icon.svg" | absURL }}" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+-->
