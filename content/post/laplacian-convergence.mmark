@@ -1,0 +1,25 @@
++++
+date = 2019-08-20T17:06:02-07:00
+draft = false
+title = "Convergence of graph Laplacian to smooth Laplacian"
+#slug = ""
+#categories = [""]
+#tags = ["julia", "Bayesian", "MCMC", "indirect inference"]
++++
+
+Let's write some $$\LaTeX$$ first.
+$$
+\newcommand{\R}{\mathbb{R}}
+$$
+
+I want to consider an embedded closed submanifold $$\Sigma$$ in an ambient Euclidean space
+$$\R^N$$.
+
+$$\Sigma$$ inherits the ambient space's metric from which we can build such objects as the smooth Laplacian $$\Delta$$.
+I shall pick $$n$$ points $$\{x_i\}$$ randomly from $$\Sigma$$.
+This provides a graph $$G$$ from which I will build an $$n\times n$$ matrix called the graph Laplacian.
+
+Any smooth function $$f$$ on $$\Sigma$$ can also be seen as function on $$G$$ by evaluation at each point $$x_i$$.
+
+Hopefully we can rewrite the maths of [this paper](https://doi.org/10.1016/j.acha.2006.03.004) to show that as $$n\to\infty$$,
+the two Laplacians converge to eachother pointwise.
