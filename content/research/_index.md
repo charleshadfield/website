@@ -7,6 +7,7 @@ draft: false
 ## articles
 
 * *Zeta function at zero for surfaces with boundary*
+<a href="/pdf/zeta-zero.pdf"><small>[pdf]</small></a>
 <a href="https://arxiv.org/abs/1803.10982"><small>[arXiv]</small></a>
 </br>
 <small>submitted, pdf link is newer than arxiv submission, several clarifications have occurred in section 4</small>
