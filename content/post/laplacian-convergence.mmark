@@ -7,19 +7,61 @@ title = "Convergence of graph Laplacian to smooth Laplacian"
 #tags = ["julia", "Bayesian", "MCMC", "indirect inference"]
 +++
 
-Let's write some $$\LaTeX$$ first.
 $$
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\vol}{\mathrm{vol}}$$
+
+I want to consider an embedded closed submanifold $$\Sigma$$ of dimension $$d$$ in an ambient Euclidean space $$\R^N$$.
+By randomly selecting $$n$$ points $$\{x_i\}$$ from $$\Sigma$$ we can build a complete graph $$G=(V,E)$$, and can weight the graph by some function dependent
+on the distance between points $$x_i, x_j$$ as well as on a scaling parameter $$h$$.
+Associated with the graph is a Graph Laplacian $$L_h$$, an $$n\times n$$ non-negative symmetric matrix.
+
+Given a smooth function $$f:\Sigma \to \Sigma$$, we can see the smooth function also as a vector in $$\R^n$$ by restricting $$f$$ to its values at points
+$$\{x_i\}$$. We could write the $$i^{\textrm{th}}$$ component as $$f_i = f(x_i)$$.
+
+In the limit of large $$n$$, I want to see a pointwise convergence of $$(L_h f)(x_i)$$ to the smooth Laplacian $$\Delta$$:
+
+$$
+\lim_{n\to\infty} (L_h f)(x_i) = (\Delta f)(x_i).
 $$
 
-I want to consider an embedded closed submanifold $$\Sigma$$ in an ambient Euclidean space
-$$\R^N$$.
 
-$$\Sigma$$ inherits the ambient space's metric from which we can build such objects as the smooth Laplacian $$\Delta$$.
-I shall pick $$n$$ points $$\{x_i\}$$ randomly from $$\Sigma$$.
-This provides a graph $$G$$ from which I will build an $$n\times n$$ matrix called the graph Laplacian.
+### Graph Laplacian
 
-Any smooth function $$f$$ on $$\Sigma$$ can also be seen as function on $$G$$ by evaluation at each point $$x_i$$.
+Consider a weighted graph $$G=(V,E,W)$$ whose weights $$w_{ij}$$ between points $$x_i, x_j$$ form the non-negative symmetric matrix $$W$$.
+In order to consider the weights as transition probabilities we can either demand that $$\sum_j w_{ij} = 1$$ or normalise by a diagonal matrix reminiscent
+of partition function. Defining $$z_{ii} = \sum_j w_{ij}$$ as components of the matrix $$Z$$. The non-negative graph Laplacian may be defined as:
 
-Hopefully we can rewrite the maths of [this paper](https://doi.org/10.1016/j.acha.2006.03.004) to show that as $$n\to\infty$$,
-the two Laplacians converge to eachother pointwise.
+$$
+L = I - Z^{-1} W.
+$$
+
+In our setting, our weights shall be defined by $$w_{ij} = k_h(|x_i-x_j|)$$ for the $$h$$-dependent Gaussian kernel
+$$k_h(x) = e^{-\frac{x^2}{2h^2}}$$. We shall also define our Laplacian with explicit dependence on $$h$$:
+
+$$
+L_h = \frac{1}{h^2}(I - Z^{-1}W).
+$$
+
+### Heat Kernel
+
+Consider a $$d$$-dimensional compact without boundary Riemannian manifold $$(\Sigma, g)$$. The Laplacian $$\Delta = d^*d$$ on the space of functions corresponds to the quadratic form
+
+$$
+(f, \Delta f) = \int_\Sigma (df, df)_x d\vol(x).
+$$
+
+The Laplacian has a heat kernel $$k_t(x,y)$$ on $$\R_+ \times \Sigma \times \Sigma$$ solving the heat equation:
+
+$$
+\partial_t k_t(x,y) + \Delta_x k_t(x,y) = 0,
+\qquad
+\lim_{t\to 0}k_t(x,y) = \delta(x,y).
+$$
+
+Near the diagonal $$k_t(x,y) \sim (4\pi t)^{-d/2} e^{-d(x,y)^2/4t} \sum_{i=0}^\infty t^i f_i(x,y)$$ where $$f_i$$ have explicit formulas upon restriction to the diagonal.
+We shall only make use of the first term:
+
+$$
+k_t(x,y) = (4\pi t)^{-d/2} e^{-d(x,y)^2/4t}(f_0(x,y) + \mathcal{O}(t)).
+$$

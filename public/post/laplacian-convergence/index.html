@@ -60,22 +60,63 @@
 
 
 
-<p>Let's write some <span  class="math">\(\LaTeX\)</span> first.
-<span  class="math">\(
+<p><span  class="math">\[
 \newcommand{\R}{\mathbb{R}}
-\)</span></p>
+\newcommand{\vol}{\mathrm{vol}}\]</span></p>
 
-<p>I want to consider an embedded closed submanifold <span  class="math">\(\Sigma\)</span> in an ambient Euclidean space
-<span  class="math">\(\R^N\)</span>.</p>
+<p>I want to consider an embedded closed submanifold <span  class="math">\(\Sigma\)</span> of dimension <span  class="math">\(d\)</span> in an ambient Euclidean space <span  class="math">\(\R^N\)</span>.
+By randomly selecting <span  class="math">\(n\)</span> points <span  class="math">\(\{x_i\}\)</span> from <span  class="math">\(\Sigma\)</span> we can build a complete graph <span  class="math">\(G=(V,E)\)</span>, and can weight the graph by some function dependent
+on the distance between points <span  class="math">\(x_i, x_j\)</span> as well as on a scaling parameter <span  class="math">\(h\)</span>.
+Associated with the graph is a Graph Laplacian <span  class="math">\(L_h\)</span>, an <span  class="math">\(n\times n\)</span> non-negative symmetric matrix.</p>
 
-<p><span  class="math">\(\Sigma\)</span> inherits the ambient space's metric from which we can build such objects as the smooth Laplacian <span  class="math">\(\Delta\)</span>.
-I shall pick <span  class="math">\(n\)</span> points <span  class="math">\(\{x_i\}\)</span> randomly from <span  class="math">\(\Sigma\)</span>.
-This provides a graph <span  class="math">\(G\)</span> from which I will build an <span  class="math">\(n\times n\)</span> matrix called the graph Laplacian.</p>
+<p>Given a smooth function <span  class="math">\(f:\Sigma \to \Sigma\)</span>, we can see the smooth function also as a vector in <span  class="math">\(\R^n\)</span> by restricting <span  class="math">\(f\)</span> to its values at points
+<span  class="math">\(\{x_i\}\)</span>. We could write the <span  class="math">\(i^{\textrm{th}}\)</span> component as <span  class="math">\(f_i = f(x_i)\)</span>.</p>
 
-<p>Any smooth function <span  class="math">\(f\)</span> on <span  class="math">\(\Sigma\)</span> can also be seen as function on <span  class="math">\(G\)</span> by evaluation at each point <span  class="math">\(x_i\)</span>.</p>
+<p>In the limit of large <span  class="math">\(n\)</span>, I want to see a pointwise convergence of <span  class="math">\((L_h f)(x_i)\)</span> to the smooth Laplacian <span  class="math">\(\Delta\)</span>:</p>
 
-<p>Hopefully we can rewrite the maths of <a href="https://doi.org/10.1016/j.acha.2006.03.004">this paper</a> to show that as <span  class="math">\(n\to\infty\)</span>,
-the two Laplacians converge to eachother pointwise.</p>
+<p><span  class="math">\[
+\lim_{n\to\infty} (L_h f)(x_i) = (\Delta f)(x_i).
+\]</span></p>
+
+<h3 id="graph-laplacian">Graph Laplacian</h3>
+
+<p>Consider a weighted graph <span  class="math">\(G=(V,E,W)\)</span> whose weights <span  class="math">\(w_{ij}\)</span> between points <span  class="math">\(x_i, x_j\)</span> form the non-negative symmetric matrix <span  class="math">\(W\)</span>.
+In order to consider the weights as transition probabilities we can either demand that <span  class="math">\(\sum_j w_{ij} = 1\)</span> or normalise by a diagonal matrix reminiscent
+of partition function. Defining <span  class="math">\(z_{ii} = \sum_j w_{ij}\)</span> as components of the matrix <span  class="math">\(Z\)</span>. The non-negative graph Laplacian may be defined as:</p>
+
+<p><span  class="math">\[
+L = I - Z^{-1} W.
+\]</span></p>
+
+<p>In our setting, our weights shall be defined by <span  class="math">\(w_{ij} = k_h(|x_i-x_j|)\)</span> for the <span  class="math">\(h\)</span>-dependent Gaussian kernel
+<span  class="math">\(k_h(x) = e^{-\frac{x^2}{2h^2}}\)</span>. We shall also define our Laplacian with explicit dependence on <span  class="math">\(h\)</span>:</p>
+
+<p><span  class="math">\[
+L_h = \frac{1}{h^2}(I - Z^{-1}W).
+\]</span></p>
+
+<h3 id="heat-kernel">Heat Kernel</h3>
+
+<p>Consider a <span  class="math">\(d\)</span>-dimensional compact without boundary Riemannian manifold <span  class="math">\((\Sigma, g)\)</span>. The Laplacian <span  class="math">\(\Delta = d^*d\)</span> on the space of functions corresponds to the quadratic form</p>
+
+<p><span  class="math">\[
+(f, \Delta f) = \int_\Sigma (df, df)_x d\vol(x).
+\]</span></p>
+
+<p>The Laplacian has a heat kernel <span  class="math">\(k_t(x,y)\)</span> on <span  class="math">\(\R_+ \times \Sigma \times \Sigma\)</span> solving the heat equation:</p>
+
+<p><span  class="math">\[
+\partial_t k_t(x,y) + \Delta_x k_t(x,y) = 0,
+\qquad
+\lim_{t\to 0}k_t(x,y) = \delta(x,y).
+\]</span></p>
+
+<p>Near the diagonal <span  class="math">\(k_t(x,y) \sim (4\pi t)^{-d/2} e^{-d(x,y)^2/4t} \sum_{i=0}^\infty t^i f_i(x,y)\)</span> where <span  class="math">\(f_i\)</span> have explicit formulas upon restriction to the diagonal.
+We shall only make use of the first term:</p>
+
+<p><span  class="math">\[
+k_t(x,y) = (4\pi t)^{-d/2} e^{-d(x,y)^2/4t}(f_0(x,y) + \mathcal{O}(t)).
+\]</span></p>
 
 
 </div>

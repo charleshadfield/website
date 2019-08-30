@@ -17,10 +17,8 @@
       <pubDate>Tue, 20 Aug 2019 17:06:02 -0700</pubDate>
       
       <guid>https://math.berkeley.edu/~hadfield/post/laplacian-convergence/</guid>
-      <description>Let&#39;s write some \(\LaTeX\) first. \( \newcommand{\R}{\mathbb{R}} \)
-I want to consider an embedded closed submanifold \(\Sigma\) in an ambient Euclidean space \(\R^N\).
-\(\Sigma\) inherits the ambient space&#39;s metric from which we can build such objects as the smooth Laplacian \(\Delta\). I shall pick \(n\) points \(\{x_i\}\) randomly from \(\Sigma\). This provides a graph \(G\) from which I will build an \(n\times n\) matrix called the graph Laplacian.
-Any smooth function \(f\) on \(\Sigma\) can also be seen as function on \(G\) by evaluation at each point \(x_i\).</description>
+      <description>\[ \newcommand{\R}{\mathbb{R}} \newcommand{\vol}{\mathrm{vol}}\]
+I want to consider an embedded closed submanifold \(\Sigma\) of dimension \(d\) in an ambient Euclidean space \(\R^N\). By randomly selecting \(n\) points \(\{x_i\}\) from \(\Sigma\) we can build a complete graph \(G=(V,E)\), and can weight the graph by some function dependent on the distance between points \(x_i, x_j\) as well as on a scaling parameter \(h\). Associated with the graph is a Graph Laplacian \(L_h\), an \(n\times n\) non-negative symmetric matrix.</description>
     </item>
     
   </channel>
