@@ -64,32 +64,39 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\vol}{\mathrm{vol}}\]</span></p>
 
-<p>I want to consider an embedded closed submanifold <span  class="math">\(\Sigma\)</span> of dimension <span  class="math">\(d\)</span> in an ambient Euclidean space <span  class="math">\(\R^N\)</span>.
-By randomly selecting <span  class="math">\(n\)</span> points <span  class="math">\(\{x_i\}\)</span> from <span  class="math">\(\Sigma\)</span> we can build a complete graph <span  class="math">\(G=(V,E)\)</span>, and can weight the graph by some function dependent
+<p>I want to consider closed Riemannian manifold <span  class="math">\((\Sigma,g)\)</span> of dimension <span  class="math">\(n\)</span>.
+By randomly selecting <span  class="math">\(N\)</span> points <span  class="math">\(\{x_i\}\)</span> from <span  class="math">\(\Sigma\)</span> we can build a complete graph <span  class="math">\(G=(V,E)\)</span>, and can weight the graph by some function dependent
 on the distance between points <span  class="math">\(x_i, x_j\)</span> as well as on a scaling parameter <span  class="math">\(h\)</span>.
-Associated with the graph is a Graph Laplacian <span  class="math">\(L_h\)</span>, an <span  class="math">\(n\times n\)</span> non-negative symmetric matrix.</p>
+Associated with the graph is a Graph Laplacian <span  class="math">\(L_h\)</span>, an <span  class="math">\(N\times N\)</span> non-negative symmetric matrix.</p>
 
-<p>Given a smooth function <span  class="math">\(f:\Sigma \to \Sigma\)</span>, we can see the smooth function also as a vector in <span  class="math">\(\R^n\)</span> by restricting <span  class="math">\(f\)</span> to its values at points
+<p>Given a smooth function <span  class="math">\(f:\Sigma \to \Sigma\)</span>, we can also see the smooth function as a vector in <span  class="math">\(\R^N\)</span> by restricting <span  class="math">\(f\)</span> to its values at points
 <span  class="math">\(\{x_i\}\)</span>. We could write the <span  class="math">\(i^{\textrm{th}}\)</span> component as <span  class="math">\(f_i = f(x_i)\)</span>.</p>
 
-<p>In the limit of large <span  class="math">\(n\)</span>, I want to see a pointwise convergence of <span  class="math">\((L_h f)(x_i)\)</span> to the smooth Laplacian <span  class="math">\(\Delta\)</span>:</p>
+<p>In the limit of large <span  class="math">\(N\)</span>, and for a fixed <span  class="math">\(x\in \{x_i\}\)</span>, I want to see a (pointwise) convergence of <span  class="math">\((L_h f)(x)\)</span> to the smooth Laplacian <span  class="math">\(\Delta\)</span>:</p>
 
 <p><span  class="math">\[
-\lim_{n\to\infty} (L_h f)(x_i) = (\Delta f)(x_i).
+\lim_{N\to\infty} (L_h f)(x) = \tfrac12 (\Delta f)(x).
 \]</span></p>
+
+<h3 id="a-domain-of-application">A domain of application</h3>
+
+<p>This idea has popped up in high-dimensional data analysis. One considers data to live on a manifold <span  class="math">\(\Sigma^n\)</span> in a much higher dimensional ambient
+space <span  class="math">\(\R^{n'}\)</span>. The graph weights are then built, not from the intrinsic metric of <span  class="math">\(\Sigma\)</span>, but from the ambient distance.
+In the small <span  class="math">\(h\)</span> regime, the only graph weights that play a role are associated with pairs of nearby points <span  class="math">\(x,y\)</span>.
+In this regime we have <span  class="math">\(|x-y| \simeq d(x, y)\)</span>.</p>
 
 <h3 id="graph-laplacian">Graph Laplacian</h3>
 
 <p>Consider a weighted graph <span  class="math">\(G=(V,E,W)\)</span> whose weights <span  class="math">\(w_{ij}\)</span> between points <span  class="math">\(x_i, x_j\)</span> form the non-negative symmetric matrix <span  class="math">\(W\)</span>.
 In order to consider the weights as transition probabilities we can either demand that <span  class="math">\(\sum_j w_{ij} = 1\)</span> or normalise by a diagonal matrix reminiscent
-of partition function. Defining <span  class="math">\(z_{ii} = \sum_j w_{ij}\)</span> as components of the matrix <span  class="math">\(Z\)</span>. The non-negative graph Laplacian may be defined as:</p>
+of a partition function. Defining <span  class="math">\(z_{ii} = \sum_j w_{ij}\)</span> as components of the matrix <span  class="math">\(Z\)</span>. The non-negative graph Laplacian may be defined as:</p>
 
 <p><span  class="math">\[
 L = I - Z^{-1} W.
 \]</span></p>
 
-<p>In our setting, our weights shall be defined by <span  class="math">\(w_{ij} = k_h(|x_i-x_j|)\)</span> for the <span  class="math">\(h\)</span>-dependent Gaussian kernel
-<span  class="math">\(k_h(x) = e^{-\frac{x^2}{2h^2}}\)</span>. We shall also define our Laplacian with explicit dependence on <span  class="math">\(h\)</span>:</p>
+<p>In our setting, our weights shall be defined by <span  class="math">\(w_{ij} = k_h(d(x_i,x_j))\)</span> for the <span  class="math">\(h\)</span>-dependent Gaussian kernel
+<span  class="math">\(\kappa_h(x) = e^{-\frac{x^2}{2h^2}}\)</span> and with <span  class="math">\(d(x_i,x_j)\)</span> the (geodesic) distance between <span  class="math">\(x_i, x_j\)</span>. We shall also define our Laplacian with explicit dependence on <span  class="math">\(h\)</span>:</p>
 
 <p><span  class="math">\[
 L_h = \frac{1}{h^2}(I - Z^{-1}W).
@@ -97,13 +104,7 @@ L_h = \frac{1}{h^2}(I - Z^{-1}W).
 
 <h3 id="heat-kernel">Heat Kernel</h3>
 
-<p>Consider a <span  class="math">\(d\)</span>-dimensional compact without boundary Riemannian manifold <span  class="math">\((\Sigma, g)\)</span>. The Laplacian <span  class="math">\(\Delta = d^*d\)</span> on the space of functions corresponds to the quadratic form</p>
-
-<p><span  class="math">\[
-(f, \Delta f) = \int_\Sigma (df, df)_x d\vol(x).
-\]</span></p>
-
-<p>The Laplacian has a heat kernel <span  class="math">\(k_t(x,y)\)</span> on <span  class="math">\(\R_+ \times \Sigma \times \Sigma\)</span> solving the heat equation:</p>
+<p>The Laplacian on functions over <span  class="math">\((\Sigma^n, g)\)</span> has a kernel <span  class="math">\(k_t(x,y)\)</span> on <span  class="math">\(\R_+ \times \Sigma \times \Sigma\)</span> solving the heat equation:</p>
 
 <p><span  class="math">\[
 \partial_t k_t(x,y) + \Delta_x k_t(x,y) = 0,
@@ -111,11 +112,63 @@ L_h = \frac{1}{h^2}(I - Z^{-1}W).
 \lim_{t\to 0}k_t(x,y) = \delta(x,y).
 \]</span></p>
 
-<p>Near the diagonal <span  class="math">\(k_t(x,y) \sim (4\pi t)^{-d/2} e^{-d(x,y)^2/4t} \sum_{i=0}^\infty t^i f_i(x,y)\)</span> where <span  class="math">\(f_i\)</span> have explicit formulas upon restriction to the diagonal.
-We shall only make use of the first term:</p>
+<p>Near the diagonal <span  class="math">\(k_t(x,y) \sim (4\pi t)^{-n/2} e^{-d(x,y)^2/4t} \sum_{i=0}^\infty t^i f_i(x,y)\)</span> where <span  class="math">\(f_i\)</span> have explicit formulas upon restriction to the diagonal.
+The previous equations imply that <span  class="math">\( \int_\Sigma k_t(x,y) dy = \vol(\Sigma) \)</span> and that for <span  class="math">\(f\in C^\infty(\Sigma)\)</span>:</p>
 
 <p><span  class="math">\[
-k_t(x,y) = (4\pi t)^{-d/2} e^{-d(x,y)^2/4t}(f_0(x,y) + \mathcal{O}(t)).
+\vol^{-1}(\Sigma) \int_\Sigma k_t(x,y) f(y) dy = f(x) - \Delta f(x).t + \mathcal{O}(t^2).
+\]</span></p>
+
+<p><strong>Our kernel:</strong> The kernel given previously looks very similar to this heat kernel upon change of variables
+<span  class="math">\(h = \sqrt{2t}\)</span>
+and upon factoring by <span  class="math">\((4\pi t)^{-n/2}\)</span>.
+The similarity holds to a first order linear correction in
+<span  class="math">\(t\)</span> in the sense that</p>
+
+<p><span  class="math">\[
+\vol^{-1}(\Sigma) (4\pi t)^{-n/2} \int_\Sigma \kappa_{\sqrt{2t}}(x,y) f(y) dy =
+f(x) + c(x) t - \Delta f(x).t + \mathcal{O}(t^2)
+\]</span></p>
+
+<p>for some <span  class="math">\(c\in C^\infty(\Sigma)\)</span>. Taylor expanding in <span  class="math">\(t\)</span> provides</p>
+
+<p><span  class="math">\[
+\frac{ \int_\Sigma \kappa_{\sqrt{2t}}(x,y) f(y) dy }{ \int_\Sigma \kappa_{\sqrt{2t}}(x,y) dy } =
+f(x) - \Delta f(x).t + \mathcal{O}(t^2).
+\]</span></p>
+
+<h3 id="pointwise-convergence">Pointwise convergence</h3>
+
+<p>Suppose <span  class="math">\(N\)</span> points <span  class="math">\(\{x_i\}\)</span> are randomly picked from <span  class="math">\(\Sigma\)</span> and consider some distinguished
+<span  class="math">\(x_i\)</span>. The graph Laplacian then behaves as</p>
+
+<p><span  class="math">\[
+\begin{align*}
+(h^2 L_h f)(x_i) &= f_i - \frac{f_i + \sum_{j\neq i} w_{ij} f_j}{1+\sum_{j\neq i} w_{ij}} \\
+&= f_i(1 + \mathcal{O}(\tfrac{1}{Nh^n})) - \frac{\tfrac{1}{N-1} \sum_{j\neq i} w_{ij} f_j}{\tfrac{1}{N-1} \sum_{j\neq i} w_{ij}}
+\end{align*}
+\]</span></p>
+
+<p>where the error term is a consequence of the scaling
+<span  class="math">\(\sum_{j\neq i} w_{ij} \sim Nh^n\)</span>.
+Considering <span  class="math">\(w_{ij}\)</span> and <span  class="math">\(w_{ij}f_j\)</span> as random variables (in <span  class="math">\(j\)</span>) provides us with the
+following two limits:</p>
+
+<p><span  class="math">\[
+\begin{align*}
+\lim_{N\to\infty} \tfrac{1}{N-1} \sum_{j\neq i} w_{ij} f_j &= \vol^{-1}(\Sigma) \int_\Sigma \kappa_h(x,y) f(y) dy \\
+\lim_{N\to\infty} \tfrac{1}{N-1} \sum_{j\neq i} w_{ij} &= \vol^{-1}(\Sigma) \int_\Sigma \kappa_h(x,y) dy
+\end{align*}
+\]</span></p>
+
+<p>The Laplacian now converges as wished:</p>
+
+<p><span  class="math">\[
+\begin{align*}
+\lim_{N\to\infty} (L_h f)(x) &= \frac{1}{h^2} \left( f(x) - \frac{\int_\Sigma \kappa_h(x,y) f(y) dy}{\int_\Sigma \kappa_h(x,y) dy}\right) \\
+&= \frac{1}{h^2} \left( f(x) - \left( f(x) - \tfrac12 h^2 \Delta f(x) + \mathcal{O}(h^4) \right) \right) \\
+&= \tfrac12 \Delta f(x) + \mathcal{O}(h^2).
+\end{align*}
 \]</span></p>
 
 

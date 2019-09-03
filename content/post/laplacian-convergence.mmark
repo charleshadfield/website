@@ -11,33 +11,41 @@ $$
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\vol}{\mathrm{vol}}$$
 
-I want to consider an embedded closed submanifold $$\Sigma$$ of dimension $$d$$ in an ambient Euclidean space $$\R^N$$.
-By randomly selecting $$n$$ points $$\{x_i\}$$ from $$\Sigma$$ we can build a complete graph $$G=(V,E)$$, and can weight the graph by some function dependent
+I want to consider closed Riemannian manifold $$(\Sigma,g)$$ of dimension $$n$$.
+By randomly selecting $$N$$ points $$\{x_i\}$$ from $$\Sigma$$ we can build a complete graph $$G=(V,E)$$, and can weight the graph by some function dependent
 on the distance between points $$x_i, x_j$$ as well as on a scaling parameter $$h$$.
-Associated with the graph is a Graph Laplacian $$L_h$$, an $$n\times n$$ non-negative symmetric matrix.
+Associated with the graph is a Graph Laplacian $$L_h$$, an $$N\times N$$ non-negative symmetric matrix.
 
-Given a smooth function $$f:\Sigma \to \Sigma$$, we can see the smooth function also as a vector in $$\R^n$$ by restricting $$f$$ to its values at points
+Given a smooth function $$f:\Sigma \to \Sigma$$, we can also see the smooth function as a vector in $$\R^N$$ by restricting $$f$$ to its values at points
 $$\{x_i\}$$. We could write the $$i^{\textrm{th}}$$ component as $$f_i = f(x_i)$$.
 
-In the limit of large $$n$$, I want to see a pointwise convergence of $$(L_h f)(x_i)$$ to the smooth Laplacian $$\Delta$$:
+In the limit of large $$N$$, and for a fixed $$x\in \{x_i\}$$, I want to see a (pointwise) convergence of $$(L_h f)(x)$$ to the smooth Laplacian $$\Delta$$:
 
 $$
-\lim_{n\to\infty} (L_h f)(x_i) = (\Delta f)(x_i).
+\lim_{N\to\infty} (L_h f)(x) = \tfrac12 (\Delta f)(x).
 $$
+
+### A domain of application
+
+This idea has popped up in high-dimensional data analysis. One considers data to live on a manifold $$\Sigma^n$$ in a much higher dimensional ambient
+space $$\R^{n'}$$. The graph weights are then built, not from the intrinsic metric of $$\Sigma$$, but from the ambient distance.
+In the small $$h$$ regime, the only graph weights that play a role are associated with pairs of nearby points $$x,y$$.
+In this regime we have $$|x-y| \simeq d(x, y)$$.
+
 
 
 ### Graph Laplacian
 
 Consider a weighted graph $$G=(V,E,W)$$ whose weights $$w_{ij}$$ between points $$x_i, x_j$$ form the non-negative symmetric matrix $$W$$.
 In order to consider the weights as transition probabilities we can either demand that $$\sum_j w_{ij} = 1$$ or normalise by a diagonal matrix reminiscent
-of partition function. Defining $$z_{ii} = \sum_j w_{ij}$$ as components of the matrix $$Z$$. The non-negative graph Laplacian may be defined as:
+of a partition function. Defining $$z_{ii} = \sum_j w_{ij}$$ as components of the matrix $$Z$$. The non-negative graph Laplacian may be defined as:
 
 $$
 L = I - Z^{-1} W.
 $$
 
-In our setting, our weights shall be defined by $$w_{ij} = k_h(|x_i-x_j|)$$ for the $$h$$-dependent Gaussian kernel
-$$k_h(x) = e^{-\frac{x^2}{2h^2}}$$. We shall also define our Laplacian with explicit dependence on $$h$$:
+In our setting, our weights shall be defined by $$w_{ij} = k_h(d(x_i,x_j))$$ for the $$h$$-dependent Gaussian kernel
+$$\kappa_h(x) = e^{-\frac{x^2}{2h^2}}$$ and with $$d(x_i,x_j)$$ the (geodesic) distance between $$x_i, x_j$$. We shall also define our Laplacian with explicit dependence on $$h$$:
 
 $$
 L_h = \frac{1}{h^2}(I - Z^{-1}W).
@@ -45,13 +53,7 @@ $$
 
 ### Heat Kernel
 
-Consider a $$d$$-dimensional compact without boundary Riemannian manifold $$(\Sigma, g)$$. The Laplacian $$\Delta = d^*d$$ on the space of functions corresponds to the quadratic form
-
-$$
-(f, \Delta f) = \int_\Sigma (df, df)_x d\vol(x).
-$$
-
-The Laplacian has a heat kernel $$k_t(x,y)$$ on $$\R_+ \times \Sigma \times \Sigma$$ solving the heat equation:
+The Laplacian on functions over $$(\Sigma^n, g)$$ has a kernel $$k_t(x,y)$$ on $$\R_+ \times \Sigma \times \Sigma$$ solving the heat equation:
 
 $$
 \partial_t k_t(x,y) + \Delta_x k_t(x,y) = 0,
@@ -59,9 +61,61 @@ $$
 \lim_{t\to 0}k_t(x,y) = \delta(x,y).
 $$
 
-Near the diagonal $$k_t(x,y) \sim (4\pi t)^{-d/2} e^{-d(x,y)^2/4t} \sum_{i=0}^\infty t^i f_i(x,y)$$ where $$f_i$$ have explicit formulas upon restriction to the diagonal.
-We shall only make use of the first term:
+Near the diagonal $$k_t(x,y) \sim (4\pi t)^{-n/2} e^{-d(x,y)^2/4t} \sum_{i=0}^\infty t^i f_i(x,y)$$ where $$f_i$$ have explicit formulas upon restriction to the diagonal.
+The previous equations imply that $$ \int_\Sigma k_t(x,y) dy = \vol(\Sigma) $$ and that for $$f\in C^\infty(\Sigma)$$:
 
 $$
-k_t(x,y) = (4\pi t)^{-d/2} e^{-d(x,y)^2/4t}(f_0(x,y) + \mathcal{O}(t)).
+\vol^{-1}(\Sigma) \int_\Sigma k_t(x,y) f(y) dy = f(x) - \Delta f(x).t + \mathcal{O}(t^2).
+$$
+
+**Our kernel:** The kernel given previously looks very similar to this heat kernel upon change of variables
+$$h = \sqrt{2t}$$
+and upon factoring by $$(4\pi t)^{-n/2}$$.
+The similarity holds to a first order linear correction in
+$$t$$ in the sense that
+
+$$
+\vol^{-1}(\Sigma) (4\pi t)^{-n/2} \int_\Sigma \kappa_{\sqrt{2t}}(x,y) f(y) dy =
+f(x) + c(x) t - \Delta f(x).t + \mathcal{O}(t^2)
+$$
+
+for some $$c\in C^\infty(\Sigma)$$. Taylor expanding in $$t$$ provides
+
+$$
+\frac{ \int_\Sigma \kappa_{\sqrt{2t}}(x,y) f(y) dy }{ \int_\Sigma \kappa_{\sqrt{2t}}(x,y) dy } =
+f(x) - \Delta f(x).t + \mathcal{O}(t^2).
+$$
+
+### Pointwise convergence
+
+Suppose $$N$$ points $$\{x_i\}$$ are randomly picked from $$\Sigma$$ and consider some distinguished
+$$x_i$$. The graph Laplacian then behaves as
+
+$$
+\begin{align*}
+(h^2 L_h f)(x_i) &= f_i - \frac{f_i + \sum_{j\neq i} w_{ij} f_j}{1+\sum_{j\neq i} w_{ij}} \\
+&= f_i(1 + \mathcal{O}(\tfrac{1}{Nh^n})) - \frac{\tfrac{1}{N-1} \sum_{j\neq i} w_{ij} f_j}{\tfrac{1}{N-1} \sum_{j\neq i} w_{ij}}
+\end{align*}
+$$
+
+where the error term is a consequence of the scaling
+$$\sum_{j\neq i} w_{ij} \sim Nh^n$$.
+Considering $$w_{ij}$$ and $$w_{ij}f_j$$ as random variables (in $$j$$) provides us with the
+following two limits:
+
+$$
+\begin{align*}
+\lim_{N\to\infty} \tfrac{1}{N-1} \sum_{j\neq i} w_{ij} f_j &= \vol^{-1}(\Sigma) \int_\Sigma \kappa_h(x,y) f(y) dy \\
+\lim_{N\to\infty} \tfrac{1}{N-1} \sum_{j\neq i} w_{ij} &= \vol^{-1}(\Sigma) \int_\Sigma \kappa_h(x,y) dy
+\end{align*}
+$$
+
+The Laplacian now converges as wished:
+
+$$
+\begin{align*}
+\lim_{N\to\infty} (L_h f)(x) &= \frac{1}{h^2} \left( f(x) - \frac{\int_\Sigma \kappa_h(x,y) f(y) dy}{\int_\Sigma \kappa_h(x,y) dy}\right) \\
+&= \frac{1}{h^2} \left( f(x) - \left( f(x) - \tfrac12 h^2 \Delta f(x) + \mathcal{O}(h^4) \right) \right) \\
+&= \tfrac12 \Delta f(x) + \mathcal{O}(h^2).
+\end{align*}
 $$

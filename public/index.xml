@@ -18,7 +18,8 @@
       
       <guid>https://math.berkeley.edu/~hadfield/post/laplacian-convergence/</guid>
       <description>\[ \newcommand{\R}{\mathbb{R}} \newcommand{\vol}{\mathrm{vol}}\]
-I want to consider an embedded closed submanifold \(\Sigma\) of dimension \(d\) in an ambient Euclidean space \(\R^N\). By randomly selecting \(n\) points \(\{x_i\}\) from \(\Sigma\) we can build a complete graph \(G=(V,E)\), and can weight the graph by some function dependent on the distance between points \(x_i, x_j\) as well as on a scaling parameter \(h\). Associated with the graph is a Graph Laplacian \(L_h\), an \(n\times n\) non-negative symmetric matrix.</description>
+I want to consider closed Riemannian manifold \((\Sigma,g)\) of dimension \(n\). By randomly selecting \(N\) points \(\{x_i\}\) from \(\Sigma\) we can build a complete graph \(G=(V,E)\), and can weight the graph by some function dependent on the distance between points \(x_i, x_j\) as well as on a scaling parameter \(h\). Associated with the graph is a Graph Laplacian \(L_h\), an \(N\times N\) non-negative symmetric matrix.
+Given a smooth function \(f:\Sigma \to \Sigma\), we can also see the smooth function as a vector in \(\R^N\) by restricting \(f\) to its values at points \(\{x_i\}\).</description>
     </item>
     
   </channel>
