@@ -1,0 +1,49 @@
+---
+title: "Torsion and geodesic flow"
+date: 2019-09-15T02:43:55-07:00
+draft: true
+---
+
+$$
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\range}{range}
+\newcommand{\even}{\mathrm{even}}
+\newcommand{\odd}{\mathrm{odd}}
+\newcommand{\c}{\mathfrak{c}}
+\newcommand{\Lie}{\mathcal{L}}
+$$
+
+### Geometric setting of geodesic flow
+
+We would love all of this to hold in an infinite dimensional geometric setting.
+Consider some Riemannian manifold $$\Sigma^{n+1}$$ and let $$M=S^*\Sigma$$ be
+the unit cotangent bundle of dimension $$2n+1$$.
+Each manifold has respectively a natural operator:
+  - on $$\Sigma$$, the Laplacian $$\Delta$$ acting on $$\Omega^\bullet(\Sigma)$$;
+  - on $$M$$, the Lie derivative of the geodesic flow $$\Lie_X$$ acting on either $$\Omega^\bullet(M)$$ or $$\Omega^\bullet_0(M)$$.
+
+In the above, we use $$T^*_0M := T^*M \cap \ker \iota_X$$ to build $$\Omega^\bullet_0(M)$$.
+Letting $$\alpha$$ be the dual form to the vector field $$X$$ it is appropriate to remove
+this part of $$T^*M$$ from the domain of $$\Lie_X$$ in order to reduce the potential kernel of
+$$\Lie_X$$.
+
+Each of these operators provides a zeta function: $$\zeta_\Delta, \zeta_X$$.
+
+From another perspective, the exterior differential provides chain complexes:
+$$(\Omega^\bullet(\Sigma), d)$$, $$(\Omega^\bullet(M), d)$$.
+*Upon wishful thinking* each chain complex has a contraction:
+  - on $$\Sigma$$, our contraction reads $$\Delta^{-1} d^*$$;
+  - on $$M$$, our contraction reads $$\Lie_X^{-1} \iota_X$$.
+
+Writing $$\tau_\Sigma, \tau_M$$ for the torsions of each complex (without reference to bases),
+and making a slight-of-hand with respect to even and odd domains of operators,
+we might expect:
+
+$$
+\begin{align*}
+\tau_\Sigma &= {\det}^2\left( d + \Delta^{-1}d^* : \Omega^\even(\Sigma) \to \Omega^\odd(\Sigma) \right); \\
+\tau_M &= {\det}^2\left( d + \Lie_X^{-1} \iota_X : \Omega^\even(M) \to \Omega^\odd(M) \right).
+\end{align*}
+$$

@@ -1,0 +1,11 @@
+---
+date: 2019-09-04T11:59:41-07:00
+draft: true
+title: "Clifford VQC"
+#slug: ""
+#categories: [""]
+#tags: ["Julia", "Quantum", "Clifford"]
+---
+
+I want to understand the small number of ingredients that go into building a simulator for quantum computation
+when restricted to unitaries belonging to the Clifford group.

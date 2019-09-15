@@ -1,0 +1,116 @@
+---
+title: "Torsion and zeta functions"
+date: 2019-09-10T17:17:47-04:00
+draft: false
+---
+
+$$
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\range}{range}
+\newcommand{\even}{\mathrm{even}}
+\newcommand{\odd}{\mathrm{odd}}
+\newcommand{\c}{\mathfrak{c}}
+\newcommand{\Lie}{\mathcal{L}}
+$$
+
+
+I want to understand the naive idea behind the relationships between torsions and zeta functions.
+We'll finish by having a finite dimensional appreciation of the analytic torsion.
+
+### Cohomological definition of torsion
+
+We start with an overly trivial setting of a very short complex of vector spaces:
+
+$$
+(C^\bullet, d) := 0 \to C^0 \xrightarrow{d} C^1 \to 0
+$$
+
+with $$C^\even=C^0$$, $$C^\odd = C^1$$. Choosing a basis $$\c$$ for $$C$$ gives
+a matrix representation of $$d$$ from which we may calculate the determinant.
+The torsion is then
+$$
+\tau_{(C^\bullet, \c)} = \det \left( d : C^\even \to C^\odd \right).
+$$
+
+More generally an acyclic complex $$(C^\bullet, d)$$ has a contraction
+$$\eta$$ satisfying $$d\eta + \eta d = 1$$. The torsion, with respect to a basis
+$$\c$$, is
+
+$$
+\tau_{(C^\bullet, \c)} = \det \left( d + \eta : C^\even \to C^\odd \right).
+$$
+
+We can push the calculations much further if we have a metric floating around:
+
+- Naively we should think of $$\eta$$ being built from the adjoint of $$d$$
+in the presence of some metric on $$C^\bullet$$. This would give $$d^*$$ and
+$$\Delta = (d+d^*)^2$$ from which $$\eta = \Delta^{-1} d^*$$.
+
+- We see $$C^j$$ decomposed as $$K^j\oplus B^j = \ker d \oplus \range d^*$$.
+And $$\Delta = d d^* |_K + d^*d |_B$$ so we introduce notaion for the determinants:
+$$\delta_j = k_j \cdot b_j$$. Note that $$b_j = k_{j+1}$$.
+
+- We write $$\tau^2 = \det ((d+\eta)(d+\eta)^*:C^\odd\to C^\odd)$$
+and on $$K^j\oplus B^j$$ the operator is diagonal:
+$$(d d^*) \oplus (\Delta^{-2}d^* d)$$ whose determinant is $$k_j b_j^{-1}$$.
+Therefore
+
+$$
+\tau^2
+= \frac{k_1 k_3 \cdots k_N}{b_1 b_3\cdots }
+= \frac{k_1 k_3 \cdots k_N}{k_2 k_4\cdots }
+= \frac{\delta_1 \delta_3^3 \cdots \delta_N^N}{\delta_2^2 \delta_4^4\cdots }
+= \prod_{k=1}^N (\det \Delta)^{(-1)^{k+1} k}
+$$
+
+In the above $$N$$ is the largest non-zero degree in $$C^\bullet$$.
+(It must be odd for the torsion to be interesting to me.)
+
+### Zeta function as determinant of operator
+
+Consider a symmetric positive operator $$A$$ on $$\C^n$$. Writing it's eigenvalues as
+$$0\le\lambda_1\le\dots\lambda_n$$,
+one usually defines the associated zeta function as
+
+$$
+\zeta_A(s) = \sum_{\lambda_j > 0} \lambda_j^{-s}.
+$$
+
+We will define the zeta function dependent on two parameters:
+
+$$
+\zeta_A(s,\lambda) = \sum_{\lambda_j \neq -\lambda} (\lambda_j + \lambda)^{-s}
+$$
+
+which is effectively the zeta function for $$A+\lambda$$. Under a change of variables calculation using
+the definition of the Gamma function, we may write
+
+$$
+\zeta_A(s, \lambda) = \frac{1}{\Gamma(s)} \int_0^\infty t^{s-1} \tr (e^{-t(A+\lambda)} - \Pi(\lambda)) \, dt
+$$
+
+where $$\Pi(\lambda)$$ is the projection operator onto the null space of $$A+\lambda$$.
+From either formula for $$\zeta$$, we see that
+$$
+\log \det (A+\lambda) = -\left.\partial_s \zeta_A(s,\lambda) \right|_{s=0} .
+$$
+
+### Analytic torsion
+
+Given a manifold $$M$$ of dimension $$N$$, the Laplacian $$\Delta$$ acting
+on differential forms provides a zeta function $$\zeta_\Delta(s,\lambda)$$.
+This provides the regularised determinant
+
+$$
+\log \det \Delta := -\left.\partial_s \zeta_\Delta(s,0) \right|_{s=0}
+$$
+
+This provides the definition of analytic torsion $$\tau$$ introduced by Ray and Singer:
+
+$$
+2 \log \tau = \left.\sum_{k=1}^N k (-1)^k \partial_s \zeta_\Delta(s,\lambda) \right|_{s=0, \lambda=0}
+$$
+
+which is equal to the Reidemeister torsion. This has been proved by Cheeger and Müller.

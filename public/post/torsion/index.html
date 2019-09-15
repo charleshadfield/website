@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Torsion and zeta functions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.57.2" />
+    <link rel="stylesheet" type="text/css" href="https://math.berkeley.edu/~hadfield/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://math.berkeley.edu/~hadfield/css/syntax.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CUbuntu+Mono&amp;subset=greek,latin-ext" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          
+          
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"] }
+          },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="https://math.berkeley.edu/~hadfield/">About</a>
+<a href="https://math.berkeley.edu/~hadfield/research">Research</a>
+<a href="https://math.berkeley.edu/~hadfield/teaching">Teaching</a>
+<a href="https://math.berkeley.edu/~hadfield/wind">Wind</a>
+<a href="https://math.berkeley.edu/~hadfield/post">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+
+
+    </nav>
+    <div id="navbarplaceholder">
+      <a href="https://math.berkeley.edu/~hadfield/">About</a>
+<a href="https://math.berkeley.edu/~hadfield/research">Research</a>
+<a href="https://math.berkeley.edu/~hadfield/teaching">Teaching</a>
+<a href="https://math.berkeley.edu/~hadfield/wind">Wind</a>
+<a href="https://math.berkeley.edu/~hadfield/post">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+
+
+    </div>
+    <div id="mainbody">
+
+<div id="content">
+<h1>Torsion and zeta functions</h1>2019/09/10
+
+
+
+<div id="pagenav">
+  
+  <span class="pagenav-label">previous post:</span>&nbsp;
+  <a href="https://math.berkeley.edu/~hadfield/post/laplacian-convergence/">Convergence of graph Laplacian to smooth Laplacian</a>
+  
+  
+</div>
+
+
+<p><span  class="math">\[
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\range}{range}
+\newcommand{\even}{\mathrm{even}}
+\newcommand{\odd}{\mathrm{odd}}
+\newcommand{\c}{\mathfrak{c}}
+\newcommand{\Lie}{\mathcal{L}}
+\]</span></p>
+
+<p>I want to understand the naive idea behind the relationships between torsions and zeta functions.
+We'll finish by having a finite dimensional appreciation of the analytic torsion.</p>
+
+<h3 id="cohomological-definition-of-torsion">Cohomological definition of torsion</h3>
+
+<p>We start with an overly trivial setting of a very short complex of vector spaces:</p>
+
+<p><span  class="math">\[
+(C^\bullet, d) := 0 \to C^0 \xrightarrow{d} C^1 \to 0
+\]</span></p>
+
+<p>with <span  class="math">\(C^\even=C^0\)</span>, <span  class="math">\(C^\odd = C^1\)</span>. Choosing a basis <span  class="math">\(\c\)</span> for <span  class="math">\(C\)</span> gives
+a matrix representation of <span  class="math">\(d\)</span> from which we may calculate the determinant.
+The torsion is then
+<span  class="math">\(
+\tau_{(C^\bullet, \c)} = \det \left( d : C^\even \to C^\odd \right).
+\)</span></p>
+
+<p>More generally an acyclic complex <span  class="math">\((C^\bullet, d)\)</span> has a contraction
+<span  class="math">\(\eta\)</span> satisfying <span  class="math">\(d\eta + \eta d = 1\)</span>. The torsion, with respect to a basis
+<span  class="math">\(\c\)</span>, is</p>
+
+<p><span  class="math">\[
+\tau_{(C^\bullet, \c)} = \det \left( d + \eta : C^\even \to C^\odd \right).
+\]</span></p>
+
+<p>We can push the calculations much further if we have a metric floating around:</p>
+
+<ul>
+<li><p>Naively we should think of <span  class="math">\(\eta\)</span> being built from the adjoint of <span  class="math">\(d\)</span>
+in the presence of some metric on <span  class="math">\(C^\bullet\)</span>. This would give <span  class="math">\(d^*\)</span> and
+<span  class="math">\(\Delta = (d+d^*)^2\)</span> from which <span  class="math">\(\eta = \Delta^{-1} d^*\)</span>.</p></li>
+
+<li><p>We see <span  class="math">\(C^j\)</span> decomposed as <span  class="math">\(K^j\oplus B^j = \ker d \oplus \range d^*\)</span>.
+And <span  class="math">\(\Delta = d d^* |_K + d^*d |_B\)</span> so we introduce notaion for the determinants:
+<span  class="math">\(\delta_j = k_j \cdot b_j\)</span>. Note that <span  class="math">\(b_j = k_{j+1}\)</span>.</p></li>
+
+<li><p>We write <span  class="math">\(\tau^2 = \det ((d+\eta)(d+\eta)^*:C^\odd\to C^\odd)\)</span>
+and on <span  class="math">\(K^j\oplus B^j\)</span> the operator is diagonal:
+<span  class="math">\((d d^*) \oplus (\Delta^{-2}d^* d)\)</span> whose determinant is <span  class="math">\(k_j b_j^{-1}\)</span>.
+Therefore</p></li>
+</ul>
+
+<p><span  class="math">\[
+\tau^2
+= \frac{k_1 k_3 \cdots k_N}{b_1 b_3\cdots }
+= \frac{k_1 k_3 \cdots k_N}{k_2 k_4\cdots }
+= \frac{\delta_1 \delta_3^3 \cdots \delta_N^N}{\delta_2^2 \delta_4^4\cdots }
+= \prod_{k=1}^N (\det \Delta)^{(-1)^{k+1} k}
+\]</span></p>
+
+<p>In the above <span  class="math">\(N\)</span> is the largest non-zero degree in <span  class="math">\(C^\bullet\)</span>.
+(It must be odd for the torsion to be interesting to me.)</p>
+
+<h3 id="zeta-function-as-determinant-of-operator">Zeta function as determinant of operator</h3>
+
+<p>Consider a symmetric positive operator <span  class="math">\(A\)</span> on <span  class="math">\(\C^n\)</span>. Writing it's eigenvalues as
+<span  class="math">\(0\le\lambda_1\le\dots\lambda_n\)</span>,
+one usually defines the associated zeta function as</p>
+
+<p><span  class="math">\[
+\zeta_A(s) = \sum_{\lambda_j > 0} \lambda_j^{-s}.
+\]</span></p>
+
+<p>We will define the zeta function dependent on two parameters:</p>
+
+<p><span  class="math">\[
+\zeta_A(s,\lambda) = \sum_{\lambda_j \neq -\lambda} (\lambda_j + \lambda)^{-s}
+\]</span></p>
+
+<p>which is effectively the zeta function for <span  class="math">\(A+\lambda\)</span>. Under a change of variables calculation using
+the definition of the Gamma function, we may write</p>
+
+<p><span  class="math">\[
+\zeta_A(s, \lambda) = \frac{1}{\Gamma(s)} \int_0^\infty t^{s-1} \tr (e^{-t(A+\lambda)} - \Pi(\lambda)) \, dt
+\]</span></p>
+
+<p>where <span  class="math">\(\Pi(\lambda)\)</span> is the projection operator onto the null space of <span  class="math">\(A+\lambda\)</span>.
+From either formula for <span  class="math">\(\zeta\)</span>, we see that
+<span  class="math">\(
+\log \det (A+\lambda) = -\left.\partial_s \zeta_A(s,\lambda) \right|_{s=0} .
+\)</span></p>
+
+<h3 id="analytic-torsion">Analytic torsion</h3>
+
+<p>Given a manifold <span  class="math">\(M\)</span> of dimension <span  class="math">\(N\)</span>, the Laplacian <span  class="math">\(\Delta\)</span> acting
+on differential forms provides a zeta function <span  class="math">\(\zeta_\Delta(s,\lambda)\)</span>.
+This provides the regularised determinant</p>
+
+<p><span  class="math">\[
+\log \det \Delta := -\left.\partial_s \zeta_\Delta(s,0) \right|_{s=0}
+\]</span></p>
+
+<p>This provides the definition of analytic torsion <span  class="math">\(\tau\)</span> introduced by Ray and Singer:</p>
+
+<p><span  class="math">\[
+2 \log \tau = \left.\sum_{k=1}^N k (-1)^k \partial_s \zeta_\Delta(s,\lambda) \right|_{s=0, \lambda=0}
+\]</span></p>
+
+<p>which is equal to the Reidemeister torsion. This has been proved by Cheeger and Müller.</p>
+
+
+</div>
+
+    </div>
+    <div id="smallscreenwarning">
+      site not optimized for small screens, math may break
+    </div>
+  </body>
+</html>
+

@@ -12,12 +12,25 @@
     
     
     <item>
+      <title>Torsion and zeta functions</title>
+      <link>https://math.berkeley.edu/~hadfield/post/torsion/</link>
+      <pubDate>Tue, 10 Sep 2019 17:17:47 -0400</pubDate>
+      
+      <guid>https://math.berkeley.edu/~hadfield/post/torsion/</guid>
+      <description>\[ \newcommand{\R}{\mathbb{R}} \newcommand{\C}{\mathbb{C}} \DeclareMathOperator{\tr}{tr} \DeclareMathOperator{\range}{range} \newcommand{\even}{\mathrm{even}} \newcommand{\odd}{\mathrm{odd}} \newcommand{\c}{\mathfrak{c}} \newcommand{\Lie}{\mathcal{L}} \]
+I want to understand the naive idea behind the relationships between torsions and zeta functions. We&#39;ll finish by having a finite dimensional appreciation of the analytic torsion.
+Cohomological definition of torsion We start with an overly trivial setting of a very short complex of vector spaces:
+\[ (C^\bullet, d) := 0 \to C^0 \xrightarrow{d} C^1 \to 0 \]
+with \(C^\even=C^0\), \(C^\odd = C^1\).</description>
+    </item>
+    
+    <item>
       <title>Convergence of graph Laplacian to smooth Laplacian</title>
       <link>https://math.berkeley.edu/~hadfield/post/laplacian-convergence/</link>
       <pubDate>Tue, 20 Aug 2019 17:06:02 -0700</pubDate>
       
       <guid>https://math.berkeley.edu/~hadfield/post/laplacian-convergence/</guid>
-      <description>\[ \newcommand{\R}{\mathbb{R}} \newcommand{\vol}{\mathrm{vol}}\]
+      <description>\[ \newcommand{\R}{\mathbb{R}} \newcommand{\vol}{\mathrm{vol}} \]
 I want to consider closed Riemannian manifold \((\Sigma,g)\) of dimension \(n\). By randomly selecting \(N\) points \(\{x_i\}\) from \(\Sigma\) we can build a complete graph \(G=(V,E)\), and can weight the graph by some function dependent on the distance between points \(x_i, x_j\) as well as on a scaling parameter \(h\). Associated with the graph is a Graph Laplacian \(L_h\), an \(N\times N\) non-negative symmetric matrix.
 Given a smooth function \(f:\Sigma \to \Sigma\), we can also see the smooth function as a vector in \(\R^N\) by restricting \(f\) to its values at points \(\{x_i\}\).</description>
     </item>

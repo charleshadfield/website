@@ -59,10 +59,20 @@
 
 
 
+<div id="pagenav">
+  
+  
+  
+  <span class="pagenav-label">next post:</span>&nbsp;
+  <a href="https://math.berkeley.edu/~hadfield/post/torsion/">Torsion and zeta functions</a>
+  
+</div>
+
 
 <p><span  class="math">\[
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\vol}{\mathrm{vol}}\]</span></p>
+\newcommand{\vol}{\mathrm{vol}}
+\]</span></p>
 
 <p>I want to consider closed Riemannian manifold <span  class="math">\((\Sigma,g)\)</span> of dimension <span  class="math">\(n\)</span>.
 By randomly selecting <span  class="math">\(N\)</span> points <span  class="math">\(\{x_i\}\)</span> from <span  class="math">\(\Sigma\)</span> we can build a complete graph <span  class="math">\(G=(V,E)\)</span>, and can weight the graph by some function dependent
@@ -116,7 +126,7 @@ L_h = \frac{1}{h^2}(I - Z^{-1}W).
 The previous equations imply that <span  class="math">\( \int_\Sigma k_t(x,y) dy = \vol(\Sigma) \)</span> and that for <span  class="math">\(f\in C^\infty(\Sigma)\)</span>:</p>
 
 <p><span  class="math">\[
-\vol^{-1}(\Sigma) \int_\Sigma k_t(x,y) f(y) dy = f(x) - \Delta f(x).t + \mathcal{O}(t^2).
+\vol(\Sigma)^{-1} \int_\Sigma k_t(x,y) f(y) dy = f(x) - \Delta f(x).t + \mathcal{O}(t^2).
 \]</span></p>
 
 <p><strong>Our kernel:</strong> The kernel given previously looks very similar to this heat kernel upon change of variables
@@ -126,7 +136,7 @@ The similarity holds to a first order linear correction in
 <span  class="math">\(t\)</span> in the sense that</p>
 
 <p><span  class="math">\[
-\vol^{-1}(\Sigma) (4\pi t)^{-n/2} \int_\Sigma \kappa_{\sqrt{2t}}(x,y) f(y) dy =
+\vol(\Sigma)^{-1} (4\pi t)^{-n/2} \int_\Sigma \kappa_{\sqrt{2t}}(x,y) f(y) dy =
 f(x) + c(x) t - \Delta f(x).t + \mathcal{O}(t^2)
 \]</span></p>
 
@@ -156,8 +166,8 @@ following two limits:</p>
 
 <p><span  class="math">\[
 \begin{align*}
-\lim_{N\to\infty} \tfrac{1}{N-1} \sum_{j\neq i} w_{ij} f_j &= \vol^{-1}(\Sigma) \int_\Sigma \kappa_h(x,y) f(y) dy \\
-\lim_{N\to\infty} \tfrac{1}{N-1} \sum_{j\neq i} w_{ij} &= \vol^{-1}(\Sigma) \int_\Sigma \kappa_h(x,y) dy
+\lim_{N\to\infty} \tfrac{1}{N-1} \sum_{j\neq i} w_{ij} f_j &= \vol(\Sigma)^{-1} \int_\Sigma \kappa_h(x,y) f(y) dy \\
+\lim_{N\to\infty} \tfrac{1}{N-1} \sum_{j\neq i} w_{ij} &= \vol(\Sigma)^{-1} \int_\Sigma \kappa_h(x,y) dy
 \end{align*}
 \]</span></p>
 
