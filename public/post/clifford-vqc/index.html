@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Clifford VQC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.57.2" />
+    <link rel="stylesheet" type="text/css" href="https://math.berkeley.edu/~hadfield/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://math.berkeley.edu/~hadfield/css/syntax.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CUbuntu+Mono&amp;subset=greek,latin-ext" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          
+          
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"] }
+          },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="https://math.berkeley.edu/~hadfield/">About</a>
+<a href="https://math.berkeley.edu/~hadfield/research">Research</a>
+<a href="https://math.berkeley.edu/~hadfield/teaching">Teaching</a>
+<a href="https://math.berkeley.edu/~hadfield/wind">Wind</a>
+<a href="https://math.berkeley.edu/~hadfield/post">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+
+
+    </nav>
+    <div id="navbarplaceholder">
+      <a href="https://math.berkeley.edu/~hadfield/">About</a>
+<a href="https://math.berkeley.edu/~hadfield/research">Research</a>
+<a href="https://math.berkeley.edu/~hadfield/teaching">Teaching</a>
+<a href="https://math.berkeley.edu/~hadfield/wind">Wind</a>
+<a href="https://math.berkeley.edu/~hadfield/post">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+
+
+    </div>
+    <div id="mainbody">
+
+<div id="content">
+<h1>Clifford VQC</h1>2019/09/04
+
+
+
+<div id="pagenav">
+  
+  <span class="pagenav-label">previous post:</span>&nbsp;
+  <a href="https://math.berkeley.edu/~hadfield/post/laplacian-convergence/">Convergence of graph Laplacian to smooth Laplacian</a>
+  
+  
+  
+  <br/>
+  
+  <span class="pagenav-label">next post:</span>&nbsp;
+  <a href="https://math.berkeley.edu/~hadfield/post/torsion/">Torsion and zeta functions</a>
+  
+</div>
+
+
+<p><span  class="math">\[
+\newcommand{\P}{\mathcal{P}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\S}{\mathcal{S}}
+\newcommand{\Z}{\mathbb{Z}}
+\]</span></p>
+
+<p>I want to understand the small number of ingredients that go into building a
+<a href="https://github.com/charleshadfield/vqc/tree/master/src">simulator</a>
+for quantum computation
+when restricted to unitaries belonging to the Clifford group.</p>
+
+<h3 id="clifford-group">Clifford group</h3>
+
+<p>We consider the Pauli group on <span  class="math">\(n\)</span> qubits <span  class="math">\(\P_n\)</span> which is the set <span  class="math">\(\{\pm i, \pm 1\} \times \{I,X,Y,Z\}^{\otimes n}\)</span>.
+The Clifford group <span  class="math">\(\C_n\)</span> is then the normaliser of <span  class="math">\(\P_n\)</span> in the set of unitaries <span  class="math">\(U(2^n)\)</span>
+(after quotienting by an unimportant <span  class="math">\(\mathbb{S}^1\)</span> phase-factor).
+The quotiented group is then discrete.</p>
+
+<h3 id="single-qubit">Single qubit</h3>
+
+<p><strong>Representation</strong>
+A single qubit can be in one of six Pauli eigenstates: <span  class="math">\(\pm X, \pm Y, \pm Z\)</span>.
+We denote this state by <span  class="math">\(S\)</span> (for stabiliser) and display it using a <span  class="math">\(\Z_2\)</span> symplectic representation:</p>
+
+<p><span  class="math">\[
+S = [ \, z \, | \, x \, | \, s \, ]
+\qquad \qquad \qquad
+\begin{array}{ccc}
+[ \, 1 \, | \, 0 \, | \, s \, ] &  & (-1)^s Z \\
+[ \, 0 \, | \, 1 \, | \, s \, ] & \to & (-1)^s X \\
+[ \, 1 \, | \, 1 \, | \, s \, ] &  & (-1)^s Y
+\end{array}
+\]</span></p>
+
+<p>For completeness, the identity <span  class="math">\(\pm I\)</span> would be denoted <span  class="math">\([ \, 0 \, | \, 0 \, | \, s \, ]\)</span>.</p>
+
+<p><strong>Gates</strong>
+A stabiliser <span  class="math">\(S\)</span> indicates that the state of the system <span  class="math">\(\psi\)</span> satisfies <span  class="math">\(S\psi = \psi\)</span>.
+So upon action by a gate <span  class="math">\(U\)</span>, the state updates to <span  class="math">\(\psi' = U\psi\)</span> hence the stabiliser
+updates to <span  class="math">\(S'=USU^\dagger\)</span>. In particular, for a Clifford gate <span  class="math">\(C\)</span>, the new stabiliser
+<span  class="math">\(S'=CSC^\dagger\)</span> is itself still a Pauli. The group of single qubit Cliffords is of size 24 and is generated
+by phase <span  class="math">\(S\)</span>, and Hadamard <span  class="math">\(H\)</span> gates. Ultimately, I've
+<a href="https://github.com/charleshadfield/vqc/blob/master/src/clif-gates.jl">hard-coded</a>
+the matrices for
+<span  class="math">\(X,Y,Z\)</span>
+so that
+<a href="https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clifford.jl#L46">right-multiplication</a>
+updates the stabiliser. For gates <span  class="math">\(S,H\)</span>, the transformation is not linear in the sense that we need to pay special attention to the update
+rule for the phase. This is due to the representation not behaving nicely with the observation that <span  class="math">\(XY=iZ\)</span> rather than <span  class="math">\(XY=Z\)</span> as might be
+suggested by the symplectic representation introduced above.</p>
+
+<p><strong>Measurement</strong>
+Single qubit systems are less interesting when considering measurement.
+The only measurements possible are measurements in the <span  class="math">\(X,Y,Z\)</span> bases: <span  class="math">\(M_X,M_Y, M_Z\)</span>.
+Writing <span  class="math">\(P\)</span> for the chosen Pauli and <span  class="math">\(S\)</span> for the state's stabiliser (without the sign <span  class="math">\(s\)</span>),
+the properties of the Pauli group ensure that</p>
+
+<p><span  class="math">\[
+\textrm{either }
+[P,S] = 0,
+\textrm{ or }
+\{P,S\} = 0.
+\]</span></p>
+
+<ul>
+<li><p>If <span  class="math">\([P,S]=0\)</span> then the sign <span  class="math">\(s\)</span> associated with <span  class="math">\(S\)</span> determines the eigenvalue measured <span  class="math">\((-1)^s\)</span>, and the representation remains unchanged.</p></li>
+
+<li><p>If <span  class="math">\(\{P,S\}=0\)</span> then the outcome is random <span  class="math">\((-1)^{s'}\)</span>, and the new state is <span  class="math">\([\, z_P \,|\, x_P \,|\, s'\,]\)</span></p></li>
+</ul>
+
+<p>The way we calculate this is more enlightening, and allows for high-weight measurements on multi-qubit systems.
+In order to calculate if <span  class="math">\(P\)</span> anti-commutes or commutes with <span  class="math">\(S\)</span>, we
+<a href="https://github.com/charleshadfield/vqc/blob/6db749bb4ab35ad4f45e298fc5025300b447c78c/src/clif-measurement.jl#L145">calculate</a>
+their <span  class="math">\(\Z_2\)</span> symplectic product:</p>
+
+<p><span  class="math">\[
+\omega(P, S) =
+\left[\begin{array}{cc} z_P & x_P \end{array}\right]
+\left[\begin{array}{cc} 0 & 1 \\ 1 & 0 \end{array}\right]
+\left[\begin{array}{c} z_S \\ x_S \end{array}\right]
+\]</span></p>
+
+<p>with <span  class="math">\(0,1\)</span> outcomes implying commuting, anti-commuting.
+Note that the normal view of a symplectic form takes the above form over <span  class="math">\(\Z_2\)</span> since <span  class="math">\(-1=1\)</span> in this case.
+With a view towards multi-qubit systems, we note that the identity <span  class="math">\(I\)</span> gives <span  class="math">\(\omega(I,S)=0\)</span>.</p>
+
+<h3 id="many-qubits">Many qubits.</h3>
+
+<p><strong>Representation</strong></p>
+
+<p>Consider a system of <span  class="math">\(n\)</span>-qubits. The state <span  class="math">\(\psi\)</span> of the system may be completely described by <span  class="math">\(n\)</span> independent stabilisers <span  class="math">\(\{S_i\}_{i=1}^n\)</span>
+such <span  class="math">\(S_i\psi=\psi\)</span>. In our setting, these stabilisers are members of <span  class="math">\(\P_n\)</span>.
+Specifically we identify a state <span  class="math">\(\psi\)</span> with an abelian group <span  class="math">\(\S\le \P_n\)</span> and note that <span  class="math">\(-I\notin\S\)</span>.</p>
+
+<p>Each stabiliser <span  class="math">\(S_i\)</span> may be represented using the <span  class="math">\(\Z_2\)</span> symplectic representation</p>
+
+<p><span  class="math">\[
+S_i = [ \, z_1, z_2, \dots, z_n \, | \, x_1, x_2, \dots, x_n \, | \, s \, ]
+\]</span></p>
+
+<p>with <span  class="math">\([\,z_k\,|\,x_k\,]\)</span> describing the pauli <span  class="math">\(I,X,Y,Z\)</span> consistent with the representation presented in the single qubit case.
+The stabiliser group is completely represented by a binary <span  class="math">\(n\times(2n+1)\)</span> matrix</p>
+
+<p><span  class="math">\[
+\S
+= \left[ \begin{array}{c} S_1 \\ \vdots \\ S_n \end{array} \right]
+\]</span></p>
+
+<p>Of course, many different generators may be chosen. As a trivial example on two qubits we would observe that
+<span  class="math">\(
+\S = \langle S_1, S_2 \rangle = \langle S_1, S_1S_2 \rangle
+\)</span>
+In the symplectic representation, this amounts to
+<a href="https://github.com/charleshadfield/vqc/blob/6db749bb4ab35ad4f45e298fc5025300b447c78c/src/clif-measurement.jl#L69">row reduction</a>.
+The tricky part is to pay attention to how the signs change.
+Usefully, this means that a stabiliser group has a normal form equivalent to row-reduced echelon form.</p>
+
+<p><strong>Gates</strong></p>
+
+<p>Two qubit gates are suprisingly simple.
+Writing <span  class="math">\(\Lambda(X), \Lambda(Z)\)</span> for controlled <span  class="math">\(X,Z\)</span> operations,
+the conjugation of Paulis are completely determined by the following formulas:</p>
+
+<p><span  class="math">\[
+\begin{array}{c} ZI \\ IZ \\ XI \\ IX \end{array}
+\xrightarrow{\,\Lambda(X)\,}
+\begin{array}{c} ZI \\ ZZ \\ XX \\ IX \end{array}
+\qquad \qquad
+\begin{array}{c} ZI \\ IZ \\ XI \\ IX \end{array}
+\xrightarrow{\,\Lambda(Z)\,}
+\begin{array}{c} ZI \\ IZ \\ XX \\ XX \end{array}
+\]</span></p>
+
+<p>where the first Pauli is the control Pauli, and the second is the target.
+As these operations do not convert <span  class="math">\(X,Z\)</span> Paulis into one another, the gates may
+be
+<a href="https://github.com/charleshadfield/vqc/blob/master/src/clif-gates.jl">hard-coded</a>
+as <span  class="math">\(2\times2\)</span> matrices
+<a href="https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clifford.jl#L98">acting separately</a>
+on the <span  class="math">\(Z,X\)</span> parts of a reduced symplectic representation:</p>
+
+<p><span  class="math">\[
+[\, z_c, z_t \,|\, x_c, x_t \,]
+\]</span></p>
+
+<p><strong>Measurement</strong>
+Measurement of arbitrary Pauli products <span  class="math">\(P\)</span> may be measured <span  class="math">\(M_P\)</span>.
+As with the single qubit state, there are two situations:</p>
+
+<ul>
+<li><p>either <span  class="math">\([P, S_i]=0\)</span> for all <span  class="math">\(i\)</span>;</p></li>
+
+<li><p>or there exists (at least one, maybe several) <span  class="math">\(i\)</span> such that <span  class="math">\(\{P, S_i\}=0\)</span>.</p></li>
+</ul>
+
+<p>In the second case we observe that if there are multiple <span  class="math">\(S_i,S_j\)</span> anti-commuting with <span  class="math">\(P\)</span>,
+then we can always do a row reduction of <span  class="math">\(\S\)</span> so that the <span  class="math">\(j^\textrm{th}\)</span> row,
+which represents <span  class="math">\(S_j\)</span> is replaced by <span  class="math">\(S_iS_j\)</span>. We can thus ensure that there exists
+at most one stabiliser which anti-commutes with <span  class="math">\(P\)</span>.</p>
+
+<ul>
+<li><p>If <span  class="math">\(P\)</span> commutes with all <span  class="math">\(S_i\)</span>, then <span  class="math">\(P\)</span> is in the group <span  class="math">\(\S\)</span>.
+The measurement outcome is then completely determined and the state does not change.</p></li>
+
+<li><p>If <span  class="math">\(P\)</span> anti-commutes with exactly one <span  class="math">\(S_i\)</span>, then the measurement is random
+<span  class="math">\((-1)^s\)</span>. The state's stabiliser <span  class="math">\(\S\)</span> gets updated by replacing <span  class="math">\(S_i\)</span> with <span  class="math">\(P\)</span>
+and the measurement sign <span  class="math">\(s\)</span>.</p></li>
+</ul>
+
+<p>To determine which setting we are in, and how to determine the measurement
+if we find ourselves in the first setting, is enjoyable.</p>
+
+<ul>
+<li><p><a href="https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clif-measurement.jl#L142">first</a>,
+we determine which rows anti-commute with <span  class="math">\(P\)</span>. To determine whether
+<span  class="math">\([P, S_i]=0\)</span> or <span  class="math">\(\{P,S_i\}=0\)</span> we calculate
+<span  class="math">\(
+\sum_{k=1}^n \omega(P_k, S_{i,k})
+\)</span>
+mod 2 where <span  class="math">\(k\)</span> indicates the Pauli on the <span  class="math">\(k^\textrm{th}\)</span> qubit.</p></li>
+
+<li><p><a href="https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clif-measurement.jl#L158">second</a>,
+if there are multiple <span  class="math">\(S_i\)</span> anti-commuting, then we multiple all
+but the first <span  class="math">\(S_i\)</span> by the first <span  class="math">\(S_i\)</span>. And then replace the first <span  class="math">\(S_i\)</span>
+with <span  class="math">\(P\)</span> along with a randomly chosen sign <span  class="math">\(s\)</span> which is the measurement outcome.</p></li>
+
+<li><p><a href="https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clif-measurement.jl#L176">third</a>,
+if we find ourselves in the case that all <span  class="math">\(S_i\)</span> commute with <span  class="math">\(P\)</span>,
+then we must determine the measurement outcome:</p>
+
+<ul>
+<li><p>Augment the symplectic representation consisting of <span  class="math">\(n\)</span> stabilisers
+to a representation consisting of <span  class="math">\(n+1\)</span> stabilisers with the final row being
+<span  class="math">\(P\)</span> (along with the sign bit initialised to 0).</p></li>
+
+<li><p>Row reduce this enlarged matrix. Necessarily, the rows are linearly dependent due
+to the final row. At the end of the row reduction algorithm, the final row will be
+completely zero except for the final entry (the sign bit <span  class="math">\(s\)</span>) which determines the
+measurement outcome <span  class="math">\((-1)^s\)</span>.</p></li>
+</ul></li>
+</ul>
+
+
+</div>
+
+    </div>
+    <div id="smallscreenwarning">
+      site not optimized for small screens, math may break
+    </div>
+  </body>
+</html>
+

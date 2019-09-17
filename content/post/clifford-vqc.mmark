@@ -1,11 +1,205 @@
 ---
 date: 2019-09-04T11:59:41-07:00
-draft: true
+draft: false
 title: "Clifford VQC"
 #slug: ""
 #categories: [""]
 #tags: ["Julia", "Quantum", "Clifford"]
 ---
+$$
+\newcommand{\P}{\mathcal{P}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\S}{\mathcal{S}}
+\newcommand{\Z}{\mathbb{Z}}
+$$
 
-I want to understand the small number of ingredients that go into building a simulator for quantum computation
+I want to understand the small number of ingredients that go into building a
+[simulator](https://github.com/charleshadfield/vqc/tree/master/src)
+for quantum computation
 when restricted to unitaries belonging to the Clifford group.
+
+### Clifford group
+
+We consider the Pauli group on $$n$$ qubits $$\P_n$$ which is the set $$\{\pm i, \pm 1\} \times \{I,X,Y,Z\}^{\otimes n}$$.
+The Clifford group $$\C_n$$ is then the normaliser of $$\P_n$$ in the set of unitaries $$U(2^n)$$
+(after quotienting by an unimportant $$\mathbb{S}^1$$ phase-factor).
+The quotiented group is then discrete.
+
+### Single qubit
+
+**Representation**
+A single qubit can be in one of six Pauli eigenstates: $$\pm X, \pm Y, \pm Z$$.
+We denote this state by $$S$$ (for stabiliser) and display it using a $$\Z_2$$ symplectic representation:
+
+$$
+S = [ \, z \, | \, x \, | \, s \, ]
+\qquad \qquad \qquad
+\begin{array}{ccc}
+[ \, 1 \, | \, 0 \, | \, s \, ] &  & (-1)^s Z \\
+[ \, 0 \, | \, 1 \, | \, s \, ] & \to & (-1)^s X \\
+[ \, 1 \, | \, 1 \, | \, s \, ] &  & (-1)^s Y
+\end{array}
+$$
+
+For completeness, the identity $$\pm I$$ would be denoted $$[ \, 0 \, | \, 0 \, | \, s \, ]$$.
+
+**Gates**
+A stabiliser $$S$$ indicates that the state of the system $$\psi$$ satisfies $$S\psi = \psi$$.
+So upon action by a gate $$U$$, the state updates to $$\psi' = U\psi$$ hence the stabiliser
+updates to $$S'=USU^\dagger$$. In particular, for a Clifford gate $$C$$, the new stabiliser
+$$S'=CSC^\dagger$$ is itself still a Pauli. The group of single qubit Cliffords is of size 24 and is generated
+by phase $$S$$, and Hadamard $$H$$ gates. Ultimately, I've
+[hard-coded](https://github.com/charleshadfield/vqc/blob/master/src/clif-gates.jl)
+the matrices for
+$$X,Y,Z$$
+so that
+[right-multiplication](https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clifford.jl#L46)
+updates the stabiliser. For gates $$S,H$$, the transformation is not linear in the sense that we need to pay special attention to the update
+rule for the phase. This is due to the representation not behaving nicely with the observation that $$XY=iZ$$ rather than $$XY=Z$$ as might be
+suggested by the symplectic representation introduced above.
+
+**Measurement**
+Single qubit systems are less interesting when considering measurement.
+The only measurements possible are measurements in the $$X,Y,Z$$ bases: $$M_X,M_Y, M_Z$$.
+Writing $$P$$ for the chosen Pauli and $$S$$ for the state's stabiliser (without the sign $$s$$),
+the properties of the Pauli group ensure that
+
+$$
+\textrm{either }
+[P,S] = 0,
+\textrm{ or }
+\{P,S\} = 0.
+$$
+
+ - If $$[P,S]=0$$ then the sign $$s$$ associated with $$S$$ determines the eigenvalue measured $$(-1)^s$$, and the representation remains unchanged.
+
+ - If $$\{P,S\}=0$$ then the outcome is random $$(-1)^{s'}$$, and the new state is $$[\, z_P \,|\, x_P \,|\, s'\,]$$
+
+The way we calculate this is more enlightening, and allows for high-weight measurements on multi-qubit systems.
+In order to calculate if $$P$$ anti-commutes or commutes with $$S$$, we
+[calculate](https://github.com/charleshadfield/vqc/blob/6db749bb4ab35ad4f45e298fc5025300b447c78c/src/clif-measurement.jl#L145)
+their $$\Z_2$$ symplectic product:
+
+$$
+\omega(P, S) =
+\left[\begin{array}{cc} z_P & x_P \end{array}\right]
+\left[\begin{array}{cc} 0 & 1 \\ 1 & 0 \end{array}\right]
+\left[\begin{array}{c} z_S \\ x_S \end{array}\right]
+$$
+
+with $$0,1$$ outcomes implying commuting, anti-commuting.
+Note that the normal view of a symplectic form takes the above form over $$\Z_2$$ since $$-1=1$$ in this case.
+With a view towards multi-qubit systems, we note that the identity $$I$$ gives $$\omega(I,S)=0$$.
+
+
+
+### Many qubits.
+
+
+**Representation**
+
+Consider a system of $$n$$-qubits. The state $$\psi$$ of the system may be completely described by $$n$$ independent stabilisers $$\{S_i\}_{i=1}^n$$
+such $$S_i\psi=\psi$$. In our setting, these stabilisers are members of $$\P_n$$.
+Specifically we identify a state $$\psi$$ with an abelian group $$\S\le \P_n$$ and note that $$-I\notin\S$$.
+
+Each stabiliser $$S_i$$ may be represented using the $$\Z_2$$ symplectic representation
+
+$$
+S_i = [ \, z_1, z_2, \dots, z_n \, | \, x_1, x_2, \dots, x_n \, | \, s \, ]
+$$
+
+with $$[\,z_k\,|\,x_k\,]$$ describing the pauli $$I,X,Y,Z$$ consistent with the representation presented in the single qubit case.
+The stabiliser group is completely represented by a binary $$n\times(2n+1)$$ matrix
+
+$$
+\S
+= \left[ \begin{array}{c} S_1 \\ \vdots \\ S_n \end{array} \right]
+$$
+
+Of course, many different generators may be chosen. As a trivial example on two qubits we would observe that
+$$
+\S = \langle S_1, S_2 \rangle = \langle S_1, S_1S_2 \rangle
+$$
+In the symplectic representation, this amounts to
+[row reduction](https://github.com/charleshadfield/vqc/blob/6db749bb4ab35ad4f45e298fc5025300b447c78c/src/clif-measurement.jl#L69).
+The tricky part is to pay attention to how the signs change.
+Usefully, this means that a stabiliser group has a normal form equivalent to row-reduced echelon form.
+
+
+**Gates**
+
+Two qubit gates are suprisingly simple.
+Writing $$\Lambda(X), \Lambda(Z)$$ for controlled $$X,Z$$ operations,
+the conjugation of Paulis are completely determined by the following formulas:
+
+$$
+\begin{array}{c} ZI \\ IZ \\ XI \\ IX \end{array}
+\xrightarrow{\,\Lambda(X)\,}
+\begin{array}{c} ZI \\ ZZ \\ XX \\ IX \end{array}
+\qquad \qquad
+\begin{array}{c} ZI \\ IZ \\ XI \\ IX \end{array}
+\xrightarrow{\,\Lambda(Z)\,}
+\begin{array}{c} ZI \\ IZ \\ XX \\ XX \end{array}
+$$
+
+where the first Pauli is the control Pauli, and the second is the target.
+As these operations do not convert $$X,Z$$ Paulis into one another, the gates may
+be
+[hard-coded](https://github.com/charleshadfield/vqc/blob/master/src/clif-gates.jl)
+as $$2\times2$$ matrices
+[acting separately](https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clifford.jl#L98)
+on the $$Z,X$$ parts of a reduced symplectic representation:
+
+$$
+[\, z_c, z_t \,|\, x_c, x_t \,]
+$$
+
+
+**Measurement**
+Measurement of arbitrary Pauli products $$P$$ may be measured $$M_P$$.
+As with the single qubit state, there are two situations:
+
+ - either $$[P, S_i]=0$$ for all $$i$$;
+
+ - or there exists (at least one, maybe several) $$i$$ such that $$\{P, S_i\}=0$$.
+
+In the second case we observe that if there are multiple $$S_i,S_j$$ anti-commuting with $$P$$,
+then we can always do a row reduction of $$\S$$ so that the $$j^\textrm{th}$$ row,
+which represents $$S_j$$ is replaced by $$S_iS_j$$. We can thus ensure that there exists
+at most one stabiliser which anti-commutes with $$P$$.
+
+ - If $$P$$ commutes with all $$S_i$$, then $$P$$ is in the group $$\S$$.
+The measurement outcome is then completely determined and the state does not change.
+
+ - If $$P$$ anti-commutes with exactly one $$S_i$$, then the measurement is random
+$$(-1)^s$$. The state's stabiliser $$\S$$ gets updated by replacing $$S_i$$ with $$P$$
+and the measurement sign $$s$$.
+
+To determine which setting we are in, and how to determine the measurement
+if we find ourselves in the first setting, is enjoyable.
+
+ - [first](https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clif-measurement.jl#L142),
+we determine which rows anti-commute with $$P$$. To determine whether
+$$[P, S_i]=0$$ or $$\{P,S_i\}=0$$ we calculate
+$$
+\sum_{k=1}^n \omega(P_k, S_{i,k})
+$$
+mod 2 where $$k$$ indicates the Pauli on the $$k^\textrm{th}$$ qubit.
+
+ - [second](https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clif-measurement.jl#L158),
+if there are multiple $$S_i$$ anti-commuting, then we multiple all
+but the first $$S_i$$ by the first $$S_i$$. And then replace the first $$S_i$$
+with $$P$$ along with a randomly chosen sign $$s$$ which is the measurement outcome.
+
+ - [third](https://github.com/charleshadfield/vqc/blob/2ee47ee8bb8c65379ccd8464be6b8e5d15e3999d/src/clif-measurement.jl#L176),
+if we find ourselves in the case that all $$S_i$$ commute with $$P$$,
+then we must determine the measurement outcome:
+
+  - Augment the symplectic representation consisting of $$n$$ stabilisers
+  to a representation consisting of $$n+1$$ stabilisers with the final row being
+  $$P$$ (along with the sign bit initialised to 0).
+
+  - Row reduce this enlarged matrix. Necessarily, the rows are linearly dependent due
+  to the final row. At the end of the row reduction algorithm, the final row will be
+  completely zero except for the final entry (the sign bit $$s$$) which determines the
+  measurement outcome $$(-1)^s$$.

@@ -25,6 +25,17 @@ with \(C^\even=C^0\), \(C^\odd = C^1\).</description>
     </item>
     
     <item>
+      <title>Clifford VQC</title>
+      <link>https://math.berkeley.edu/~hadfield/post/clifford-vqc/</link>
+      <pubDate>Wed, 04 Sep 2019 11:59:41 -0700</pubDate>
+      
+      <guid>https://math.berkeley.edu/~hadfield/post/clifford-vqc/</guid>
+      <description>\[ \newcommand{\P}{\mathcal{P}} \newcommand{\C}{\mathcal{C}} \newcommand{\S}{\mathcal{S}} \newcommand{\Z}{\mathbb{Z}} \]
+I want to understand the small number of ingredients that go into building a simulator for quantum computation when restricted to unitaries belonging to the Clifford group.
+Clifford group We consider the Pauli group on \(n\) qubits \(\P_n\) which is the set \(\{\pm i, \pm 1\} \times \{I,X,Y,Z\}^{\otimes n}\). The Clifford group \(\C_n\) is then the normaliser of \(\P_n\) in the set of unitaries \(U(2^n)\) (after quotienting by an unimportant \(\mathbb{S}^1\) phase-factor).</description>
+    </item>
+    
+    <item>
       <title>Convergence of graph Laplacian to smooth Laplacian</title>
       <link>https://math.berkeley.edu/~hadfield/post/laplacian-convergence/</link>
       <pubDate>Tue, 20 Aug 2019 17:06:02 -0700</pubDate>
