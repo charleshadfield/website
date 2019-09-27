@@ -1,0 +1,165 @@
+---
+title: "Dirac equation on surfaces"
+date: 2019-09-25T14:22:02-07:00
+draft: false
+---
+
+$$
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Cl}{\textrm{Cl}}
+\newcommand{\cCl}{\C\textrm{l}}
+\newcommand{\p}{\partial}
+\newcommand{\End}{\textrm{End}}
+$$
+
+This is a quick recollection of how the Dirac equation on spinor bundles over
+flat space looks. We'll recall the two dimensional case with Riemannian
+signature.
+
+### Riemannian surface
+
+We consider $$(M,g)$$ to be $$\R^2$$ with the Euclidean metric. The tangent
+space is spanned by $$\{e_1, e_2\}=\{\p_x, \p_y\}$$ and the associated Clifford
+algebra is $$\Cl_2$$ which is isomorphic as an algebra to the quaternions $$\H$$.
+The Dirac operator acting on $$\Cl_2$$ is
+
+$$D = e_1 \cdot \p_x + e_2 \cdot \p_y.$$
+
+The Clifford algebra decomposes into even and odd elements,
+$$\Cl_2^0 \oplus \Cl_1^0$$, and the Dirac operator respects this decomposition
+
+$$
+D = \left[ \begin{array}{cc} 0 & D^1 \\ D^0 & 0 \end{array}\right]
+$$
+
+We identify the Clifford algebra with two copies of $$\C$$ via
+$$
+\varphi : \Cl_2^0 \oplus \Cl_1^0 \to \C\oplus\C
+$$
+sending
+$$\{1, e_1e_2\}\mapsto\{1, -i\}$$
+and
+$$\{e_1, e_2\}\mapsto\{1, i\}$$.
+Under this identification, the Dirac operator behaves like the operators
+providing the Cauchy-Riemann equations:
+
+$$
+\varphi D \varphi^{-1} = \left[ \begin{array}{cc} 0 & -\p_z \\ \p_{\bar z} & 0 \end{array}\right]
+$$
+
+We check one part of the preceding statement (restricting to even sections):
+
+$$
+\begin{align*}
+\left(\left.\varphi D \varphi^{-1}\right|_{\C\oplus 0} \right)(u+iv)
+&= \varphi \left(( e_1\cdot \p_x + e_2 \cdot p_y ) (u - ve_1e_2)\right) \\
+&= \varphi \left( (u_x - v_y)e_1 + (u_y + v_x)e_2\right) \\
+&= (u_x-v_y) + i(u_y + v_x) \\
+&= \p_{\bar z}(u+iv).
+\end{align*}
+$$
+
+Keeping this identification, we see $$\varphi D^2\varphi^{-1}$$ gives two copies
+of the Laplacian $$\Delta = -\p_x^2 - \p_y^2$$.
+
+#### The original physics version of spinors
+
+There is a lot of choice in the bundle we choose. We shall now highlight a choice
+of bundle that is more in line with the spirit of the bundle associated with electrons
+in 3+1 dimensions. Consider the complexification $$\cCl_2$$ which is isomorphic as an algebra
+to $$\C(2)$$. One possible identification is
+
+$$
+\{ 1, e_1, e_2, e_1e_2 \}
+\mapsto
+\left\{
+\begin{bmatrix} 1&0\\0&1  \end{bmatrix},
+\begin{bmatrix} 0&-1\\1&0\end{bmatrix},
+\begin{bmatrix} i&0\\0&-i\end{bmatrix},
+\begin{bmatrix} -i&0\\0&-i\end{bmatrix}
+\right\}.
+$$
+
+And it is wise to introduce the complex volume element $$\omega_\C = ie_1e_2$$,
+such that $$\omega_\C^2=1$$. We can see this isomorphism as a representation of $$\cCl_2$$
+on $$\C^2$$. The spinor bundle $$\Sigma$$ above $$M$$ is then $$\C^2$$.
+The complex volume element decomposes $$\Sigma$$ via projections
+$$\pi_{\pm} = \frac12(1\pm \omega_\C)$$.
+In the 3+1 physics setting, these are chiral projection operators giving left
+and right chiral components.
+
+
+There are a couple of headaches when trying to port over the physics world to this setting.
+
+- We should have started with the Lorentzian version of the Dirac equation.
+This would have required $$e_1e_1=1$$. The squared operator would then give a
+d'Alembertian (rather than a Laplacian) in the sense of the Klein-Gordon equation.
+
+- The vector bundle for spinors has rank $$4$$ in the standard setting. The four
+degrees of freedom are associated with two spin-1/2 particles
+(e.g. the electron and the positron). With only two degrees of freedom,
+this interpretation is no longer accessible.
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+### Lorentzian surface
+
+There are a lot of competing interests in sign conventions when considering the
+lorentzian setting. Below is one attempt as a mathematician.
+
+We consider $$(M,g)$$ to be $$\R^{1,1}$$ with the lorentzian metric
+$$-dt^2+dx^2$$.
+The tangent space is spanned by $$\{e_0, e_1\}=\{\p_t, \p_x\}$$ and the
+associated Clifford algebra is $$\Cl_{1,1}$$ which is isomorphic as an algebra
+to $$\R(2)$$. For example, one possible mapping is
+
+$$
+\{ 1, e_0, e_1, e_0e_1 \}
+\mapsto
+\left\{
+\begin{bmatrix} 1&0\\0&1\end{bmatrix},
+\begin{bmatrix} 1&0\\0&-1\end{bmatrix},
+\begin{bmatrix} 0&-1\\1&0\end{bmatrix},
+\begin{bmatrix} 0&-1\\-1&0\end{bmatrix}
+\right\}.
+$$
+
+We shall consider this as a representation on $$\C^2$$. The Dirac equation,
+with a mass term, then reads
+
+$$
+(ie_0\p_t + ie_1p_x -m)\psi = 0
+$$
+
+In momentum space, where physicists claim $$-i\p_t\mapsto E$$,
+and $$-i\p_x\mapsto p$$,
+
+$$
+\begin{bmatrix} E-m&-p\\ p&-E-m\end{bmatrix}
+\begin{bmatrix} u_A\\ u_B\end{bmatrix}
+$$
+
+with solutions, under the constraint $$E^2=m^2+p^2$$,
+
+$$
+u_A = \begin{bmatrix} 1\\ p/(E+m)\end{bmatrix},
+\qquad
+u_B = \begin{bmatrix} -p/(-E+m)\\ 1\end{bmatrix}.
+$$
+
+
+-->

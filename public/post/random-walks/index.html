@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Classical and quantum random walks</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.57.2" />
+    <link rel="stylesheet" type="text/css" href="https://math.berkeley.edu/~hadfield/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://math.berkeley.edu/~hadfield/css/syntax.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CUbuntu+Mono&amp;subset=greek,latin-ext" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          
+          
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"] }
+          },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="https://math.berkeley.edu/~hadfield/">About</a>
+<a href="https://math.berkeley.edu/~hadfield/research">Research</a>
+<a href="https://math.berkeley.edu/~hadfield/teaching">Teaching</a>
+<a href="https://wx.iwindsurf.com/map#37.717,-122.464,10,1">Wind</a>
+<a href="https://math.berkeley.edu/~hadfield/post">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+
+
+    </nav>
+    <div id="navbarplaceholder">
+      <a href="https://math.berkeley.edu/~hadfield/">About</a>
+<a href="https://math.berkeley.edu/~hadfield/research">Research</a>
+<a href="https://math.berkeley.edu/~hadfield/teaching">Teaching</a>
+<a href="https://wx.iwindsurf.com/map#37.717,-122.464,10,1">Wind</a>
+<a href="https://math.berkeley.edu/~hadfield/post">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+
+
+    </div>
+    <div id="mainbody">
+
+<div id="content">
+<h1>Classical and quantum random walks</h1>2019/09/27
+
+
+
+<div id="pagenav">
+  
+  <span class="pagenav-label">previous post:</span>&nbsp;
+  <a href="https://math.berkeley.edu/~hadfield/post/dirac-eqn/">Dirac equation on surfaces</a>
+  
+  
+</div>
+
+
+<p><span  class="math">\[
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\]</span></p>
+
+<p>There are some attractive statements floating around between quantum random walks,
+the Dirac equation, and Grover's search algorithm.</p>
+
+<p>Before thinking about the algorithmic aspect, I want to see the parrallel between
+classical random walks limiting to the heat equation,
+and quantum random walks limiting to the Dirac equation.
+Both of these limits will be done in the easiest case of <span  class="math">\(1+1\)</span> dimensions.</p>
+
+<h3 id="classical-walks">Classical walks</h3>
+
+<p>We'll consider the simplest case of a particle on a 1-dimensional line or grid,
+with the particle randomly hopping to neighbouring sites during each time step.
+There's a lot to say, and one can take the mathematically heavy viewpoint of
+working with distributions and then obtaining limits in the weak sense.
+However I'll treat everything much more naively.</p>
+
+<p>Consider space-time coordinates <span  class="math">\((x,t)\)</span> in a grid <span  class="math">\(h\Z \times h^2\N_0\)</span>
+where <span  class="math">\(h>0\)</span> will be our scaling parameter.
+For fixed time <span  class="math">\(t\)</span>, let <span  class="math">\(p(x,t)\)</span> be the probability of finding the particle
+at site <span  class="math">\(x\)</span>. If, during a time step <span  class="math">\(h^2\)</span>, the particle jumps a distance <span  class="math">\(h\)</span>
+left or right with equal probability, then the probability obviously satisfies the
+difference equation</p>
+
+<p><span  class="math">\[
+p(x, t + h^2) = \tfrac12 p(x-h, t) + \tfrac12 p(x+h, t)
+\]</span></p>
+
+<p>which (subtracting <span  class="math">\(p(x,t)\)</span> and dividing by <span  class="math">\(h^2\)</span>)
+leads to the finite difference equation</p>
+
+<p><span  class="math">\[
+\frac{p(x,t+h^2) - p(x)}{h^2} =
+\frac12 \left( \frac{p(x-h, t) - 2 p(x,t) + p(x+h, t)}{h^2} \right)
+\]</span></p>
+
+<p>whose limit as <span  class="math">\(h\to 0\)</span> provides the diffusion equation</p>
+
+<p><span  class="math">\[
+\partial_t p(x,t) = - \tfrac 12 \Delta_x p(x, t).
+\]</span></p>
+
+<h4 id="the-smooth-solution-seen-from-a-coursegrain-point-of-view">The smooth solution seen from a course-grain point of view.</h4>
+
+<p>Rather than going from discrete to continuous, suppose the discrete story told
+above is rather a course approximation to a solution <span  class="math">\(u(x,t)\)</span>. We ought write</p>
+
+<p><span  class="math">\[
+u(x,t) = \sum_{k,m} p(k,m) \delta_{k,m}(x,t)
+\]</span></p>
+
+<p>where <span  class="math">\(k,m\in\Z\times \N_0\)</span> (and since we want to initially start at the origin,
+we observe that only sites with <span  class="math">\(k+m\)</span> are even).
+A cunning way to set up the initial value is by declaring</p>
+
+<p><span  class="math">\[
+f(x, t) = \tfrac14 ( \delta_{-1,-1} + 2\delta_{0,-2} + \delta_{1,-1} )(x,t).
+\]</span></p>
+
+<p>If we set the scaling:</p>
+
+<p><span  class="math">\[
+u_h(x,t) = \tfrac 1h u ( \tfrac xh, \tfrac t{h^2}),
+\qquad
+f_h(x,t) = \tfrac 1{h^3} u ( \tfrac xh, \tfrac t{h^2}),
+\]</span></p>
+
+<p>then <span  class="math">\(u_h\)</span> is may be considered a probability density associated with a
+random walk of time step size <span  class="math">\(h^2\)</span> and space step size <span  class="math">\(h\)</span>.
+Due to the even invariance of <span  class="math">\(k+m\)</span>, we'll consider operators</p>
+
+<p><span  class="math">\[
+\begin{align*}
+\partial_{ht} u(x,t) &= \frac{u(x,t+2h^2) - u(x,t)}{2h^2}, \\
+\Delta_{hx} u(x,t) &= - \frac{u(x-2h,t) - 2u(x,t) + u(x+2h, t)}{4h^2}, \\
+L_h &= \partial_{ht} + \tfrac12 \Delta_{hx}
+\end{align*}
+\]</span></p>
+
+<p>and we calculate to see <span  class="math">\(L_h u_h = f_h\)</span>. In the small <span  class="math">\(h\)</span> limit,</p>
+
+<p><span  class="math">\[
+\partial_t \bar u + \tfrac12 \Delta_x \bar u = \delta_{0,0}.
+\]</span></p>
+
+<p>with <span  class="math">\(\bar u\)</span> a limit of <span  class="math">\(\{u_h\}\)</span>. In fact it is the fundamental solution:
+<span  class="math">\(
+\bar u (x,t) = (2\pi t)^{-1/2} e^{-x^2/2t}.
+\)</span></p>
+
+<h3 id="quantum-walks">Quantum walks</h3>
+
+<p><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></p>
+
+
+</div>
+
+    </div>
+    <div id="smallscreenwarning">
+      site not optimized for small screens, math may break
+    </div>
+  </body>
+</html>
+

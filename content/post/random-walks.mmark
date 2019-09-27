@@ -1,0 +1,106 @@
+---
+title: "Classical and quantum random walks"
+date: 2019-09-27T12:20:57-07:00
+draft: false
+---
+
+$$
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+$$
+
+There are some attractive statements floating around between quantum random walks,
+the Dirac equation, and Grover's search algorithm.
+
+Before thinking about the algorithmic aspect, I want to see the parrallel between
+classical random walks limiting to the heat equation,
+and quantum random walks limiting to the Dirac equation.
+Both of these limits will be done in the easiest case of $$1+1$$ dimensions.
+
+### Classical walks
+
+We'll consider the simplest case of a particle on a 1-dimensional line or grid,
+with the particle randomly hopping to neighbouring sites during each time step.
+There's a lot to say, and one can take the mathematically heavy viewpoint of
+working with distributions and then obtaining limits in the weak sense.
+However I'll treat everything much more naively.
+
+Consider space-time coordinates $$(x,t)$$ in a grid $$h\Z \times h^2\N_0$$
+where $$h>0$$ will be our scaling parameter.
+For fixed time $$t$$, let $$p(x,t)$$ be the probability of finding the particle
+at site $$x$$. If, during a time step $$h^2$$, the particle jumps a distance $$h$$
+left or right with equal probability, then the probability obviously satisfies the
+difference equation
+
+$$
+p(x, t + h^2) = \tfrac12 p(x-h, t) + \tfrac12 p(x+h, t)
+$$
+
+which (subtracting $$p(x,t)$$ and dividing by $$h^2$$)
+leads to the finite difference equation
+
+$$
+\frac{p(x,t+h^2) - p(x)}{h^2} =
+\frac12 \left( \frac{p(x-h, t) - 2 p(x,t) + p(x+h, t)}{h^2} \right)
+$$
+
+whose limit as $$h\to 0$$ provides the diffusion equation
+
+$$
+\partial_t p(x,t) = - \tfrac 12 \Delta_x p(x, t).
+$$
+
+#### The smooth solution seen from a course-grain point of view.
+
+Rather than going from discrete to continuous, suppose the discrete story told
+above is rather a course approximation to a solution $$u(x,t)$$. We ought write
+
+$$
+u(x,t) = \sum_{k,m} p(k,m) \delta_{k,m}(x,t)
+$$
+
+where $$k,m\in\Z\times \N_0$$ (and since we want to initially start at the origin,
+we observe that only sites with $$k+m$$ are even).
+A cunning way to set up the initial value is by declaring
+
+$$
+f(x, t) = \tfrac14 ( \delta_{-1,-1} + 2\delta_{0,-2} + \delta_{1,-1} )(x,t).
+$$
+
+If we set the scaling:
+
+$$
+u_h(x,t) = \tfrac 1h u ( \tfrac xh, \tfrac t{h^2}),
+\qquad
+f_h(x,t) = \tfrac 1{h^3} u ( \tfrac xh, \tfrac t{h^2}),
+$$
+
+then $$u_h$$ is may be considered a probability density associated with a
+random walk of time step size $$h^2$$ and space step size $$h$$.
+Due to the even invariance of $$k+m$$, we'll consider operators
+
+$$
+\begin{align*}
+\partial_{ht} u(x,t) &= \frac{u(x,t+2h^2) - u(x,t)}{2h^2}, \\
+\Delta_{hx} u(x,t) &= - \frac{u(x-2h,t) - 2u(x,t) + u(x+2h, t)}{4h^2}, \\
+L_h &= \partial_{ht} + \tfrac12 \Delta_{hx}
+\end{align*}
+$$
+
+and we calculate to see $$L_h u_h = f_h$$. In the small $$h$$ limit,
+
+$$
+\partial_t \bar u + \tfrac12 \Delta_x \bar u = \delta_{0,0}.
+$$
+
+with $$\bar u$$ a limit of $$\{u_h\}$$. In fact it is the fundamental solution:
+$$
+\bar u (x,t) = (2\pi t)^{-1/2} e^{-x^2/2t}.
+$$
+
+### Quantum walks
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

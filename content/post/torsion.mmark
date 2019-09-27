@@ -49,7 +49,7 @@ in the presence of some metric on $$C^\bullet$$. This would give $$d^*$$ and
 $$\Delta = (d+d^*)^2$$ from which $$\eta = \Delta^{-1} d^*$$.
 
 - We see $$C^j$$ decomposed as $$K^j\oplus B^j = \ker d \oplus \range d^*$$.
-And $$\Delta = d d^* |_K + d^*d |_B$$ so we introduce notaion for the determinants:
+And $$\Delta = d d^* |_K + d^*d |_B$$ so we introduce notation for the determinants:
 $$\delta_j = k_j \cdot b_j$$. Note that $$b_j = k_{j+1}$$.
 
 - We write $$\tau^2 = \det ((d+\eta)(d+\eta)^*:C^\odd\to C^\odd)$$

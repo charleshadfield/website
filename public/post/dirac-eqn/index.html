@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Dirac equation on surfaces</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.57.2" />
+    <link rel="stylesheet" type="text/css" href="https://math.berkeley.edu/~hadfield/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://math.berkeley.edu/~hadfield/css/syntax.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CUbuntu+Mono&amp;subset=greek,latin-ext" rel="stylesheet">
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          
+          
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"] }
+          },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="https://math.berkeley.edu/~hadfield/">About</a>
+<a href="https://math.berkeley.edu/~hadfield/research">Research</a>
+<a href="https://math.berkeley.edu/~hadfield/teaching">Teaching</a>
+<a href="https://wx.iwindsurf.com/map#37.717,-122.464,10,1">Wind</a>
+<a href="https://math.berkeley.edu/~hadfield/post">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+
+
+    </nav>
+    <div id="navbarplaceholder">
+      <a href="https://math.berkeley.edu/~hadfield/">About</a>
+<a href="https://math.berkeley.edu/~hadfield/research">Research</a>
+<a href="https://math.berkeley.edu/~hadfield/teaching">Teaching</a>
+<a href="https://wx.iwindsurf.com/map#37.717,-122.464,10,1">Wind</a>
+<a href="https://math.berkeley.edu/~hadfield/post">Blog</a>
+<a href="https://github.com/charleshadfield/">Github</a>
+
+
+
+    </div>
+    <div id="mainbody">
+
+<div id="content">
+<h1>Dirac equation on surfaces</h1>2019/09/25
+
+
+
+<div id="pagenav">
+  
+  <span class="pagenav-label">previous post:</span>&nbsp;
+  <a href="https://math.berkeley.edu/~hadfield/post/torsion/">Torsion and zeta functions</a>
+  
+  
+  
+  <br/>
+  
+  <span class="pagenav-label">next post:</span>&nbsp;
+  <a href="https://math.berkeley.edu/~hadfield/post/random-walks/">Classical and quantum random walks</a>
+  
+</div>
+
+
+<p><span  class="math">\[
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Cl}{\textrm{Cl}}
+\newcommand{\cCl}{\C\textrm{l}}
+\newcommand{\p}{\partial}
+\newcommand{\End}{\textrm{End}}
+\]</span></p>
+
+<p>This is a quick recollection of how the Dirac equation on spinor bundles over
+flat space looks. We'll recall the two dimensional case with Riemannian
+signature.</p>
+
+<h3 id="riemannian-surface">Riemannian surface</h3>
+
+<p>We consider <span  class="math">\((M,g)\)</span> to be <span  class="math">\(\R^2\)</span> with the Euclidean metric. The tangent
+space is spanned by <span  class="math">\(\{e_1, e_2\}=\{\p_x, \p_y\}\)</span> and the associated Clifford
+algebra is <span  class="math">\(\Cl_2\)</span> which is isomorphic as an algebra to the quaternions <span  class="math">\(\H\)</span>.
+The Dirac operator acting on <span  class="math">\(\Cl_2\)</span> is</p>
+
+<p><span  class="math">\[D = e_1 \cdot \p_x + e_2 \cdot \p_y.\]</span></p>
+
+<p>The Clifford algebra decomposes into even and odd elements,
+<span  class="math">\(\Cl_2^0 \oplus \Cl_1^0\)</span>, and the Dirac operator respects this decomposition</p>
+
+<p><span  class="math">\[
+D = \left[ \begin{array}{cc} 0 & D^1 \\ D^0 & 0 \end{array}\right]
+\]</span></p>
+
+<p>We identify the Clifford algebra with two copies of <span  class="math">\(\C\)</span> via
+<span  class="math">\(
+\varphi : \Cl_2^0 \oplus \Cl_1^0 \to \C\oplus\C
+\)</span>
+sending
+<span  class="math">\(\{1, e_1e_2\}\mapsto\{1, -i\}\)</span>
+and
+<span  class="math">\(\{e_1, e_2\}\mapsto\{1, i\}\)</span>.
+Under this identification, the Dirac operator behaves like the operators
+providing the Cauchy-Riemann equations:</p>
+
+<p><span  class="math">\[
+\varphi D \varphi^{-1} = \left[ \begin{array}{cc} 0 & -\p_z \\ \p_{\bar z} & 0 \end{array}\right]
+\]</span></p>
+
+<p>We check one part of the preceding statement (restricting to even sections):</p>
+
+<p><span  class="math">\[
+\begin{align*}
+\left(\left.\varphi D \varphi^{-1}\right|_{\C\oplus 0} \right)(u+iv)
+&= \varphi \left(( e_1\cdot \p_x + e_2 \cdot p_y ) (u - ve_1e_2)\right) \\
+&= \varphi \left( (u_x - v_y)e_1 + (u_y + v_x)e_2\right) \\
+&= (u_x-v_y) + i(u_y + v_x) \\
+&= \p_{\bar z}(u+iv).
+\end{align*}
+\]</span></p>
+
+<p>Keeping this identification, we see <span  class="math">\(\varphi D^2\varphi^{-1}\)</span> gives two copies
+of the Laplacian <span  class="math">\(\Delta = -\p_x^2 - \p_y^2\)</span>.</p>
+
+<h4 id="the-original-physics-version-of-spinors">The original physics version of spinors</h4>
+
+<p>There is a lot of choice in the bundle we choose. We shall now highlight a choice
+of bundle that is more in line with the spirit of the bundle associated with electrons
+in 3+1 dimensions. Consider the complexification <span  class="math">\(\cCl_2\)</span> which is isomorphic as an algebra
+to <span  class="math">\(\C(2)\)</span>. One possible identification is</p>
+
+<p><span  class="math">\[
+\{ 1, e_1, e_2, e_1e_2 \}
+\mapsto
+\left\{
+\begin{bmatrix} 1&0\\0&1  \end{bmatrix},
+\begin{bmatrix} 0&-1\\1&0\end{bmatrix},
+\begin{bmatrix} i&0\\0&-i\end{bmatrix},
+\begin{bmatrix} -i&0\\0&-i\end{bmatrix}
+\right\}.
+\]</span></p>
+
+<p>And it is wise to introduce the complex volume element <span  class="math">\(\omega_\C = ie_1e_2\)</span>,
+such that <span  class="math">\(\omega_\C^2=1\)</span>. We can see this isomorphism as a representation of <span  class="math">\(\cCl_2\)</span>
+on <span  class="math">\(\C^2\)</span>. The spinor bundle <span  class="math">\(\Sigma\)</span> above <span  class="math">\(M\)</span> is then <span  class="math">\(\C^2\)</span>.
+The complex volume element decomposes <span  class="math">\(\Sigma\)</span> via projections
+<span  class="math">\(\pi_{\pm} = \frac12(1\pm \omega_\C)\)</span>.
+In the 3+1 physics setting, these are chiral projection operators giving left
+and right chiral components.</p>
+
+<p>There are a couple of headaches when trying to port over the physics world to this setting.</p>
+
+<ul>
+<li><p>We should have started with the Lorentzian version of the Dirac equation.
+This would have required <span  class="math">\(e_1e_1=1\)</span>. The squared operator would then give a
+d'Alembertian (rather than a Laplacian) in the sense of the Klein-Gordon equation.</p></li>
+
+<li><p>The vector bundle for spinors has rank <span  class="math">\(4\)</span> in the standard setting. The four
+degrees of freedom are associated with two spin-1/2 particles
+(e.g. the electron and the positron). With only two degrees of freedom,
+this interpretation is no longer accessible.</p></li>
+</ul>
+
+<!--
+### Lorentzian surface
+
+There are a lot of competing interests in sign conventions when considering the
+lorentzian setting. Below is one attempt as a mathematician.
+
+We consider $$(M,g)$$ to be $$\R^{1,1}$$ with the lorentzian metric
+$$-dt^2+dx^2$$.
+The tangent space is spanned by $$\{e_0, e_1\}=\{\p_t, \p_x\}$$ and the
+associated Clifford algebra is $$\Cl_{1,1}$$ which is isomorphic as an algebra
+to $$\R(2)$$. For example, one possible mapping is
+
+$$
+\{ 1, e_0, e_1, e_0e_1 \}
+\mapsto
+\left\{
+\begin{bmatrix} 1&0\\0&1\end{bmatrix},
+\begin{bmatrix} 1&0\\0&-1\end{bmatrix},
+\begin{bmatrix} 0&-1\\1&0\end{bmatrix},
+\begin{bmatrix} 0&-1\\-1&0\end{bmatrix}
+\right\}.
+$$
+
+We shall consider this as a representation on $$\C^2$$. The Dirac equation,
+with a mass term, then reads
+
+$$
+(ie_0\p_t + ie_1p_x -m)\psi = 0
+$$
+
+In momentum space, where physicists claim $$-i\p_t\mapsto E$$,
+and $$-i\p_x\mapsto p$$,
+
+$$
+\begin{bmatrix} E-m&-p\\ p&-E-m\end{bmatrix}
+\begin{bmatrix} u_A\\ u_B\end{bmatrix}
+$$
+
+with solutions, under the constraint $$E^2=m^2+p^2$$,
+
+$$
+u_A = \begin{bmatrix} 1\\ p/(E+m)\end{bmatrix},
+\qquad
+u_B = \begin{bmatrix} -p/(-E+m)\\ 1\end{bmatrix}.
+$$
+
+
+-->
+
+
+</div>
+
+    </div>
+    <div id="smallscreenwarning">
+      site not optimized for small screens, math may break
+    </div>
+  </body>
+</html>
+

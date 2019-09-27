@@ -12,6 +12,29 @@
     
     
     <item>
+      <title>Classical and quantum random walks</title>
+      <link>https://math.berkeley.edu/~hadfield/post/random-walks/</link>
+      <pubDate>Fri, 27 Sep 2019 12:20:57 -0700</pubDate>
+      
+      <guid>https://math.berkeley.edu/~hadfield/post/random-walks/</guid>
+      <description>\[ \newcommand{\N}{\mathbb{N}} \newcommand{\Z}{\mathbb{Z}} \newcommand{\R}{\mathbb{R}} \newcommand{\C}{\mathbb{C}} \]
+There are some attractive statements floating around between quantum random walks, the Dirac equation, and Grover&#39;s search algorithm.
+Before thinking about the algorithmic aspect, I want to see the parrallel between classical random walks limiting to the heat equation, and quantum random walks limiting to the Dirac equation. Both of these limits will be done in the easiest case of \(1+1\) dimensions.
+Classical walks We&#39;ll consider the simplest case of a particle on a 1-dimensional line or grid, with the particle randomly hopping to neighbouring sites during each time step.</description>
+    </item>
+    
+    <item>
+      <title>Dirac equation on surfaces</title>
+      <link>https://math.berkeley.edu/~hadfield/post/dirac-eqn/</link>
+      <pubDate>Wed, 25 Sep 2019 14:22:02 -0700</pubDate>
+      
+      <guid>https://math.berkeley.edu/~hadfield/post/dirac-eqn/</guid>
+      <description>\[ \newcommand{\N}{\mathbb{N}} \newcommand{\Z}{\mathbb{Z}} \newcommand{\R}{\mathbb{R}} \newcommand{\C}{\mathbb{C}} \newcommand{\H}{\mathbb{H}} \newcommand{\Cl}{\textrm{Cl}} \newcommand{\cCl}{\C\textrm{l}} \newcommand{\p}{\partial} \newcommand{\End}{\textrm{End}} \]
+This is a quick recollection of how the Dirac equation on spinor bundles over flat space looks. We&#39;ll recall the two dimensional case with Riemannian signature.
+Riemannian surface We consider \((M,g)\) to be \(\R^2\) with the Euclidean metric. The tangent space is spanned by \(\{e_1, e_2\}=\{\p_x, \p_y\}\) and the associated Clifford algebra is \(\Cl_2\) which is isomorphic as an algebra to the quaternions \(\H\).</description>
+    </item>
+    
+    <item>
       <title>Torsion and zeta functions</title>
       <link>https://math.berkeley.edu/~hadfield/post/torsion/</link>
       <pubDate>Tue, 10 Sep 2019 17:17:47 -0400</pubDate>

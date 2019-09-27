@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://math.berkeley.edu/~hadfield/post/random-walks/</loc>
+    <lastmod>2019-09-27T12:20:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://math.berkeley.edu/~hadfield/post/dirac-eqn/</loc>
+    <lastmod>2019-09-25T14:22:02-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://math.berkeley.edu/~hadfield/post/torsion/</loc>
     <lastmod>2019-09-10T17:17:47-04:00</lastmod>
   </url>
