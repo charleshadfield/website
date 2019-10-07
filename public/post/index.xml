@@ -17,7 +17,7 @@
       <pubDate>Fri, 27 Sep 2019 12:20:57 -0700</pubDate>
       
       <guid>https://math.berkeley.edu/~hadfield/post/random-walks/</guid>
-      <description>\[ \newcommand{\N}{\mathbb{N}} \newcommand{\Z}{\mathbb{Z}} \newcommand{\R}{\mathbb{R}} \newcommand{\C}{\mathbb{C}} \]
+      <description>\[ \newcommand{\N}{\mathbb{N}} \newcommand{\Z}{\mathbb{Z}} \newcommand{\R}{\mathbb{R}} \newcommand{\C}{\mathbb{C}} \newcommand{\Cl}{\textrm{Cl}} \]
 There are some attractive statements floating around between quantum random walks, the Dirac equation, and Grover&#39;s search algorithm.
 Before thinking about the algorithmic aspect, I want to see the parrallel between classical random walks limiting to the heat equation, and quantum random walks limiting to the Dirac equation. Both of these limits will be done in the easiest case of \(1+1\) dimensions.
 Classical walks We&#39;ll consider the simplest case of a particle on a 1-dimensional line or grid, with the particle randomly hopping to neighbouring sites during each time step.</description>

@@ -73,6 +73,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\Cl}{\textrm{Cl}}
 \]</span></p>
 
 <p>There are some attractive statements floating around between quantum random walks,
@@ -166,7 +167,60 @@ L_h &= \partial_{ht} + \tfrac12 \Delta_{hx}
 
 <h3 id="quantum-walks">Quantum walks</h3>
 
-<p><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></p>
+<p>The following is a non-conventional version of a quantum random walk in <span  class="math">\(1+1\)</span>
+dimensions because we want to obtain the Dirac equation in the continuum limit.
+We shall start by considering the massless case. This case allows us to
+consider Weyl spinors (eigenspinors of the helicity operator) which do not mix.</p>
+
+<p>The spinor bundle is associated with an irreducible representation of
+<span  class="math">\(
+\Cl_{1,1}
+\)</span>.
+We use the complexified bundle <span  class="math">\(\C^2\)</span> and a representation</p>
+
+<p><span  class="math">\[
+e_x \mapsto \sigma_x = i\begin{bmatrix} 0&1\\1&0  \end{bmatrix},
+\qquad
+e_t \mapsto \sigma_t = -i\begin{bmatrix} 0&-1\\1&0  \end{bmatrix},
+\qquad
+e_xe_t \mapsto \omega = \begin{bmatrix} 1&0\\0&-1  \end{bmatrix}.
+\]</span></p>
+
+<p>The <span  class="math">\(\pm\)</span> helicities are associated with <span  class="math">\(\pm1\)</span> eigenspaces of <span  class="math">\(\omega\)</span>.
+So in this representation, the components of the spinor are precisely the <span  class="math">\(\pm\)</span>
+helicity spinors:</p>
+
+<p><span  class="math">\[
+\Psi = \begin{bmatrix} \psi_+ \\ \psi_-  \end{bmatrix}.
+\]</span></p>
+
+<p>The Dirac equation, in its continuum form, reads</p>
+
+<p><span  class="math">\[
+i(\sigma_t \partial_t + \sigma_x \partial_x) \Psi = 0,
+\qquad
+\begin{bmatrix} 0 & -\partial_t-\partial_x \\ \partial_t - \partial_x & 0  \end{bmatrix}
+\begin{bmatrix} \psi_+ \\ \psi_-  \end{bmatrix}
+=\begin{bmatrix} 0 \\ 0  \end{bmatrix}
+\]</span></p>
+
+<p>Hence we have two decoupled equations:
+<span  class="math">\(\partial_t \psi_+ = \partial_x \psi_+\)</span>
+and
+<span  class="math">\(\partial_t \psi_- = -\partial_x \psi_-\)</span>.</p>
+
+<p>Consider space-time coordinates <span  class="math">\((x,t)\)</span> in a grid <span  class="math">\(h\Z \times h\N_0\)</span>
+where <span  class="math">\(h>0\)</span> will be our scaling parameter. We easily recover the Dirac equation
+by declaring:</p>
+
+<p><span  class="math">\[
+\begin{align*}
+\psi_+(x,t+h) &= \psi_+(x+h, t), \\
+\psi_-(x,t+h) &= \psi_-(x-h, t).
+\end{align*}
+\]</span></p>
+
+<p>(To recover the Dirac equation, subtract <span  class="math">\(\psi_\pm(x,t)\)</span> from each side, divide by <span  class="math">\(h\)</span>, and consider the small <span  class="math">\(h\)</span> limit.)</p>
 
 
 </div>
