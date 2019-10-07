@@ -9,6 +9,7 @@ $$
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\Cl}{\textrm{Cl}}
 $$
 
 There are some attractive statements floating around between quantum random walks,
@@ -102,5 +103,57 @@ $$
 
 ### Quantum walks
 
+The following is a non-conventional version of a quantum random walk in $$1+1$$
+dimensions because we want to obtain the Dirac equation in the continuum limit.
+We shall start by considering the massless case. This case allows us to
+consider Weyl spinors (eigenspinors of the helicity operator) which do not mix.
 
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+The spinor bundle is associated with an irreducible representation of
+$$
+\Cl_{1,1}
+$$.
+We use the complexified bundle $$\C^2$$ and a representation
+
+$$
+e_x \mapsto \sigma_x = i\begin{bmatrix} 0&1\\1&0  \end{bmatrix},
+\qquad
+e_t \mapsto \sigma_t = -i\begin{bmatrix} 0&-1\\1&0  \end{bmatrix},
+\qquad
+e_xe_t \mapsto \omega = \begin{bmatrix} 1&0\\0&-1  \end{bmatrix}.
+$$
+
+The $$\pm$$ helicities are associated with $$\pm1$$ eigenspaces of $$\omega$$.
+So in this representation, the components of the spinor are precisely the $$\pm$$
+helicity spinors:
+
+$$
+\Psi = \begin{bmatrix} \psi_+ \\ \psi_-  \end{bmatrix}.
+$$
+
+The Dirac equation, in its continuum form, reads
+
+$$
+i(\sigma_t \partial_t + \sigma_x \partial_x) \Psi = 0,
+\qquad
+\begin{bmatrix} 0 & -\partial_t-\partial_x \\ \partial_t - \partial_x & 0  \end{bmatrix}
+\begin{bmatrix} \psi_+ \\ \psi_-  \end{bmatrix}
+=\begin{bmatrix} 0 \\ 0  \end{bmatrix}
+$$
+
+Hence we have two decoupled equations:
+$$\partial_t \psi_+ = \partial_x \psi_+$$
+and
+$$\partial_t \psi_- = -\partial_x \psi_-$$.
+
+Consider space-time coordinates $$(x,t)$$ in a grid $$h\Z \times h\N_0$$
+where $$h>0$$ will be our scaling parameter. We easily recover the Dirac equation
+by declaring:
+
+$$
+\begin{align*}
+\psi_+(x,t+h) &= \psi_+(x+h, t), \\
+\psi_-(x,t+h) &= \psi_-(x-h, t).
+\end{align*}
+$$
+
+(To recover the Dirac equation, subtract $$\psi_\pm(x,t)$$ from each side, divide by $$h$$, and consider the small $$h$$ limit.)
