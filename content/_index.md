@@ -6,7 +6,7 @@ draft: false
 
 # Charles Hadfield
 
-I am a mathematician working in the theory division at Rigetti Quantum Computing.
+I am a mathematician working on quantum computing at IBM in NYC.
 
 I defended my PhD at École normale supérieure in Paris in June 2017.
 
