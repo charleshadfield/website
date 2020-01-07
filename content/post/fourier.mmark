@@ -1,0 +1,8 @@
+---
+title: "Representation theory behind the quantum Fourer transform"
+date: 2020-01-07T16:53:24-05:00
+draft: true
+---
+
+The Quantum Fourier Transform (QFT) is at the heart of phase estimation.
+I want to understand it as a "change of basis which diagonalises the regular representation".
