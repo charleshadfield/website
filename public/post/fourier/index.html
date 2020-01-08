@@ -68,8 +68,138 @@
 </div>
 
 
+<p><span  class="math">\[
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\spanC}{\mathrm{span}_\C}
+\newcommand{\F}{\mathcal{F}}
+\]</span></p>
+
 <p>The Quantum Fourier Transform (QFT) is at the heart of phase estimation.
 I want to understand it as a &quot;change of basis which diagonalises the regular representation&quot;.</p>
+
+<p>The QFT
+<span  class="math">\(
+\F
+\)</span>
+on a single qubit is nothing more than an application of the Hadamard gate
+<span  class="math">\(H\)</span>
+sending</p>
+
+<p><span  class="math">\[
+\begin{align}
+\ket{0}&\mapsto \tfrac1{\sqrt2} (\ket{0}+\ket{1}),
+&
+\ket{1}&\mapsto\tfrac1{\sqrt2}(\ket{0}-\ket{1}).
+\end{align}
+\]</span></p>
+
+<p>However behind the scenes there is already a group action of the qubits acting on themselves.
+This interpretation will ultimately lead us to a very general interpretation of the QFT.
+All that is required is a touch of representation theory at the level of
+Chapter 1 of
+Linear representations of finite groups
+by J-P. Serre</p>
+
+<p>If we see the qubits as the (finite, abelian) group
+<span  class="math">\(\Z_2\)</span>
+as well as the state-space
+<span  class="math">\(\C \Z_2 = \C^2\)</span>
+(with standard basis
+<span  class="math">\(\{\ket{0},\ket{1}\}\)</span>)
+then the group acts on state-space</p>
+
+<p><span  class="math">\[
+i \cdot \ket{j} = \ket{i+j \mod 2}
+\]</span></p>
+
+<p>The susbspaces spanned by each of the standard basis elements are not invariant
+under this action however the Fourier transformed basis elements <span  class="math">\(H\ket{j}\)</span>
+each give one-dimensional spaces which are invariant under the group action.
+That is, for each group element <span  class="math">\(i\in\Z_2\)</span>, and each standard basis
+<span  class="math">\(\ket{j}\)</span></p>
+
+<p><span  class="math">\[
+i \cdot \spanC \{ H\ket{j} \} = \spanC \{ H\ket{j} \}.
+\]</span></p>
+
+<p>In the language of representation theory, we are considering the left regular
+representation of the group <span  class="math">\(\Z_2\)</span>. And in general for finite groups, the left
+regular representation contains all irreducible representations; each irrep occurs
+with multiplicity given by the degree of said irrep. Here, <span  class="math">\(\Z_2\)</span> is abelian
+so all irreps are one-dimensional so each occur once, and there are two distinct irreps.
+The Fourier transform has taken the standard basis and given a basis for the irreducible representations.</p>
+
+<p>We'll denote irreps of a group <span  class="math">\(G\)</span> by <span  class="math">\(\rho\)</span> and their characteristic functions <span  class="math">\(\chi_\rho\)</span>.
+Importantly, characteristic functions form an orthonomal basis for the space of class functions.
+(Class functions being functions which are constant on each conjugacy class of the group.)
+So irreps can be indexed by conjugacy classes <span  class="math">\(\hat G\)</span>.</p>
+
+<p>Returning to the world of a single qubit, <span  class="math">\(\Z_2\)</span> is abelian, so the conjugacy classes
+may be identified with the group itself. The two irreps <span  class="math">\(\rho_j\)</span> are:</p>
+
+<p><span  class="math">\[
+\rho_0 \equiv 1,
+\qquad
+\rho_1(i) = (-1)^i
+\]</span></p>
+
+<p>with characters <span  class="math">\(\chi_0\equiv 1\)</span> and <span  class="math">\(\chi_1(i)=(-1)^i\)</span>.
+We can more suggestively write the characters as
+<span  class="math">\(
+\chi_j(i) = \exp(\frac{2\pi i j}{2}).
+\)</span>
+The QFT on a qubit is then (just in a different notation):</p>
+
+<p><span  class="math">\[
+\F : \ket{j} \mapsto \frac1{\sqrt2} \sum_{i \in \Z_2} \chi_j(i) \ket{i}.
+\]</span></p>
+
+<p>The QFT on <span  class="math">\(\Z_N\)</span> is now immediate</p>
+
+<p><span  class="math">\[
+\F = \frac1{\sqrt N} \sum_{j\in \hat \Z_N} \sum_{i\in \Z_N} e^{\frac{2\pi i j}{N}} \ket{i} \langle j|
+\]</span></p>
+
+<p>and this recovers the usual Fourier transform in the case that <span  class="math">\(N=2^n\)</span> upon an
+appropriate indexing scheme for the standard basis for <span  class="math">\(n\)</span>-qubits.
+There is also a physics position-momentum type argument.
+For <span  class="math">\(\Z_N\)</span>, consider the momentum operator <span  class="math">\(U=\sum_{k\in\Z_N} \ket{k+1}\langle k|\)</span>.
+The application of <span  class="math">\(\F\)</span> to the standard bases provides eigenstates of <span  class="math">\(U\)</span>.
+Alternatively, <span  class="math">\(\F\)</span> is diagonalising <span  class="math">\(U\)</span>.</p>
+
+<p>The move to a non-abelian group <span  class="math">\(G\)</span> is now not surprising. Suppose the group
+has <span  class="math">\(|G|\)</span> elements and the irreps are indexed as
+<span  class="math">\(\rho \in \hat G\)</span>
+whose degrees are
+<span  class="math">\(d_\rho\)</span>.
+Then by understanding the regular representation, we obtain the formula
+<span  class="math">\(\sum_\rho d_\rho^2 = |G|\)</span>. The Fourier transform provides a unitary map</p>
+
+<p><span  class="math">\[
+\F : \C G \to \bigoplus_{\rho \in \hat G} \mathrm{GL}(\C^{d_\rho})
+\]</span></p>
+
+<p>a standard basis element <span  class="math">\(\ket{x}\)</span> is mapped to an appropriately weighted superposition over all
+irreps</p>
+
+<p><span  class="math">\[
+\F \ket{x} = \frac1{\sqrt{|G|}}\sum_{\rho\in\hat G} d_\rho \ket{\rho, \rho(x)}
+\]</span></p>
+
+<p>where
+<span  class="math">\(d_\rho\)</span> appears due to each irrep occurring <span  class="math">\(d_\rho\)</span> times in the regular representation,
+<span  class="math">\(\ket{\rho}\)</span> labels the representation,
+and <span  class="math">\(\rho(x)\)</span> is a (basis-dependent) matrix representation</p>
+
+<p><span  class="math">\[
+\ket{\rho(x)} = \frac1{\sqrt{d_\rho}} \sum_{i,j=1}^{d_\rho} \rho(x)_{i,j} \ket{i,j}.
+\]</span></p>
+
+<p>As an aside, this reconsideration of the Fourier transform from a perspective of representation theory
+has made one of the first tasks of my PhD much clearer. The Peter-Weyl theorem allows us to do a similar
+diagonalisation for compact Lie groups.</p>
 
 
 </div>

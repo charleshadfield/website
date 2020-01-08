@@ -17,7 +17,11 @@
       <pubDate>Tue, 07 Jan 2020 16:53:24 -0500</pubDate>
       
       <guid>https://math.berkeley.edu/~hadfield/post/fourier/</guid>
-      <description>The Quantum Fourier Transform (QFT) is at the heart of phase estimation. I want to understand it as a &amp;quot;change of basis which diagonalises the regular representation&amp;quot;.</description>
+      <description>\[ \newcommand{\ket}[1]{|#1\rangle} \newcommand{\Z}{\mathbb{Z}} \newcommand{\C}{\mathbb{C}} \newcommand{\spanC}{\mathrm{span}_\C} \newcommand{\F}{\mathcal{F}} \]
+The Quantum Fourier Transform (QFT) is at the heart of phase estimation. I want to understand it as a &amp;quot;change of basis which diagonalises the regular representation&amp;quot;.
+The QFT \( \F \) on a single qubit is nothing more than an application of the Hadamard gate \(H\) sending
+\[ \begin{align} \ket{0}&amp;\mapsto \tfrac1{\sqrt2} (\ket{0}+\ket{1}), &amp; \ket{1}&amp;\mapsto\tfrac1{\sqrt2}(\ket{0}-\ket{1}). \end{align} \]
+However behind the scenes there is already a group action of the qubits acting on themselves.</description>
     </item>
     
     <item>

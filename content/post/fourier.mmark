@@ -4,5 +4,144 @@ date: 2020-01-07T16:53:24-05:00
 draft: false
 ---
 
+$$
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\spanC}{\mathrm{span}_\C}
+\newcommand{\F}{\mathcal{F}}
+$$
+
 The Quantum Fourier Transform (QFT) is at the heart of phase estimation.
 I want to understand it as a "change of basis which diagonalises the regular representation".
+
+
+The QFT
+$$
+\F
+$$
+on a single qubit is nothing more than an application of the Hadamard gate
+$$H$$
+sending
+
+$$
+\begin{align}
+\ket{0}&\mapsto \tfrac1{\sqrt2} (\ket{0}+\ket{1}),
+&
+\ket{1}&\mapsto\tfrac1{\sqrt2}(\ket{0}-\ket{1}).
+\end{align}
+$$
+
+However behind the scenes there is already a group action of the qubits acting on themselves.
+This interpretation will ultimately lead us to a very general interpretation of the QFT.
+All that is required is a touch of representation theory at the level of
+Chapter 1 of
+Linear representations of finite groups
+by J-P. Serre
+
+If we see the qubits as the (finite, abelian) group
+$$\Z_2$$
+as well as the state-space
+$$\C \Z_2 = \C^2$$
+(with standard basis
+$$\{\ket{0},\ket{1}\}$$)
+then the group acts on state-space
+
+$$
+i \cdot \ket{j} = \ket{i+j \mod 2}
+$$
+
+The susbspaces spanned by each of the standard basis elements are not invariant
+under this action however the Fourier transformed basis elements $$H\ket{j}$$
+each give one-dimensional spaces which are invariant under the group action.
+That is, for each group element $$i\in\Z_2$$, and each standard basis
+$$\ket{j}$$
+
+$$
+i \cdot \spanC \{ H\ket{j} \} = \spanC \{ H\ket{j} \}.
+$$
+
+In the language of representation theory, we are considering the left regular
+representation of the group $$\Z_2$$. And in general for finite groups, the left
+regular representation contains all irreducible representations; each irrep occurs
+with multiplicity given by the degree of said irrep. Here, $$\Z_2$$ is abelian
+so all irreps are one-dimensional so each occur once, and there are two distinct irreps.
+The Fourier transform has taken the standard basis and given a basis for the irreducible representations.
+
+
+We'll denote irreps of a group $$G$$ by $$\rho$$ and their characteristic functions $$\chi_\rho$$.
+Importantly, characteristic functions form an orthonomal basis for the space of class functions.
+(Class functions being functions which are constant on each conjugacy class of the group.)
+So irreps can be indexed by conjugacy classes $$\hat G$$.
+
+Returning to the world of a single qubit, $$\Z_2$$ is abelian, so the conjugacy classes
+may be identified with the group itself. The two irreps $$\rho_j$$ are:
+
+$$
+\rho_0 \equiv 1,
+\qquad
+\rho_1(i) = (-1)^i
+$$
+
+with characters $$\chi_0\equiv 1$$ and $$\chi_1(i)=(-1)^i$$.
+We can more suggestively write the characters as
+$$
+\chi_j(i) = \exp(\frac{2\pi i j}{2}).
+$$
+The QFT on a qubit is then (just in a different notation):
+
+$$
+\F : \ket{j} \mapsto \frac1{\sqrt2} \sum_{i \in \Z_2} \chi_j(i) \ket{i}.
+$$
+
+
+The QFT on $$\Z_N$$ is now immediate
+
+$$
+\F = \frac1{\sqrt N} \sum_{j\in \hat \Z_N} \sum_{i\in \Z_N} e^{\frac{2\pi i j}{N}} \ket{i} \langle j|
+$$
+
+and this recovers the usual Fourier transform in the case that $$N=2^n$$ upon an
+appropriate indexing scheme for the standard basis for $$n$$-qubits.
+There is also a physics position-momentum type argument.
+For $$\Z_N$$, consider the momentum operator $$U=\sum_{k\in\Z_N} \ket{k+1}\langle k|$$.
+The application of $$\F$$ to the standard bases provides eigenstates of $$U$$.
+Alternatively, $$\F$$ is diagonalising $$U$$.
+
+
+
+
+
+
+The move to a non-abelian group $$G$$ is now not surprising. Suppose the group
+has $$|G|$$ elements and the irreps are indexed as
+$$\rho \in \hat G$$
+whose degrees are
+$$d_\rho$$.
+Then by understanding the regular representation, we obtain the formula
+$$\sum_\rho d_\rho^2 = |G|$$. The Fourier transform provides a unitary map
+
+$$
+\F : \C G \to \bigoplus_{\rho \in \hat G} \mathrm{GL}(\C^{d_\rho})
+$$
+
+a standard basis element $$\ket{x}$$ is mapped to an appropriately weighted superposition over all
+irreps
+
+$$
+\F \ket{x} = \frac1{\sqrt{|G|}}\sum_{\rho\in\hat G} d_\rho \ket{\rho, \rho(x)}
+$$
+
+where
+$$d_\rho$$ appears due to each irrep occurring $$d_\rho$$ times in the regular representation,
+$$\ket{\rho}$$ labels the representation,
+and $$\rho(x)$$ is a (basis-dependent) matrix representation
+
+$$
+\ket{\rho(x)} = \frac1{\sqrt{d_\rho}} \sum_{i,j=1}^{d_\rho} \rho(x)_{i,j} \ket{i,j}.
+$$
+
+
+As an aside, this reconsideration of the Fourier transform from a perspective of representation theory
+has made one of the first tasks of my PhD much clearer. The Peter-Weyl theorem allows us to do a similar
+diagonalisation for compact Lie groups. 
