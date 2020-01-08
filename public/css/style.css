@@ -40,6 +40,13 @@ h4 {
 small, .font_small {
   font-size: 0.833em; }
 
+img[src$='#frontpagephoto']
+  {
+  	float: right ;
+    width: 10em;
+    margin: 1em;
+  }
+
 #smallscreenwarning {
   display: none; }
   @media screen and (max-width: 41em) {

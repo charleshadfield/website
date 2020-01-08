@@ -15,3 +15,4 @@ I was a Morrey Assistant Professor in the Mathematics Department at UC Berkeley 
 My [CV](/pdf/cv.pdf). Please feel free to contact me via [email](mailto:charles.hadfield@gmail.com).
 
 <img id="cricket" src="./img/cricket.jpeg" alt="Aotearoa">
+<!-- ![Aotearoa](./img/cricket.jpeg#cricket "cricket") -->
