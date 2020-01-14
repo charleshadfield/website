@@ -57,6 +57,10 @@ draft: false
 <a href="/pdf/misc_math/fermi-encode.pdf"><small>[notes]</small></a>
 </br>
 <small>notes on fermionic encodings of second-quantised Hamiltonians</small>
+</br>
+<small>representation theory, Jordan-Wigner, Parity, Bravyi-Kitaev</small>
+</br>
+<small>to do: superfast/generalised BK, qubit tapering</small>
 
 * *lectures on quantum error correction:*
 [1](/pdf/misc_math/qec_lecture_1.pdf)
