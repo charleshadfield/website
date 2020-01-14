@@ -1,5 +1,5 @@
 ---
-title: "Representation theory behind the quantum Fourer transform"
+title: "Representation theory behind the quantum Fourier transform"
 date: 2020-01-07T16:53:24-05:00
 draft: false
 ---
@@ -144,4 +144,4 @@ $$
 
 As an aside, this reconsideration of the Fourier transform from a perspective of representation theory
 has made one of the first tasks of my PhD much clearer. The Peter-Weyl theorem allows us to do a similar
-diagonalisation for compact Lie groups. 
+diagonalisation for compact Lie groups.

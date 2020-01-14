@@ -1,0 +1,85 @@
+---
+title: "Quantum overlapping tomography"
+date: 2020-01-09T18:59:46-05:00
+draft: true
+---
+
+$$
+\newcommand{\tr}{\mathrm{tr}}
+$$
+
+This is a note on quantum overlapping tomography. It will hopefully lead to a new result.
+I am attempting to understand two papers
+
+- [arXiv 1908.02754](https://arxiv.org/abs/1908.02754) by Cotler, Wilczek
+- [arXiv 1908.05628](https://arxiv.org/abs/1908.05628) by Bonet-Monroig, Babbush, O'Brien
+
+and want to understand how a fermionic representation affects the results.
+
+## Some notation
+
+We consider qubits with (non-normalised) Pauli matrices $$\sigma^\alpha$$
+
+$$
+\sigma^0 = \begin{bmatrix} 1&0\\0&1  \end{bmatrix},
+\quad
+\sigma^1 = \begin{bmatrix} 0&1\\1&0  \end{bmatrix},
+\quad
+\sigma^2 = \begin{bmatrix} 0&-i\\i&0  \end{bmatrix},
+\quad
+\sigma^3 = \begin{bmatrix} 1&0\\0&-1  \end{bmatrix}
+$$
+
+which form an non-orthonormal bases for hermitian matrices whose inner-product is
+$$\langle A, B\rangle = \tr(A,B)$$.
+So $$\langle \sigma^\alpha, \sigma^\beta \rangle = 2 \delta^{\alpha\beta}$$.
+
+An $$n$$-qubit pauli may be written $$\sigma^A$$ with $$A$$ a multi-index. Any density
+is then written
+
+$$
+\rho = \tfrac1{2^n}\sum_A \rho_A \sigma^A,
+\qquad
+\rho_A = \langle \sigma^A, \rho \rangle.
+$$
+
+
+### A single qubit example
+
+Consider a single qubit in a pure state $$\psi=\alpha|0\rangle + \beta|1 \rangle$$
+leading to density
+
+$$
+\rho =  \begin{bmatrix} \alpha^2&\alpha\bar\beta\\\bar\alpha\beta&\beta^2  \end{bmatrix}.
+$$
+
+In the above basis, this reads
+
+$$
+\rho = \tfrac12(\alpha^2+\beta^2)\sigma^0 + \mathrm{Re}(\bar\alpha\beta)\sigma^1 + \mathrm{Im}(\bar\alpha\beta)\sigma^2 + \tfrac12(\alpha^2-\beta^2)\sigma^3.
+$$
+
+Note that $$\rho_0=1$$ and that (if we prepare and measure $$M$$-times) this state in the $$Z$$-basis,
+then we can estimate the expectation value $$\rho_3$$ by $$\tfrac1M(n(\uparrow_z)-n(\downarrow_z))$$ where
+$$n(\uparrow_z),n(\downarrow_z)$$ are the number of times state up/down are observed.
+A similar statement holds for $$X,Y$$-bases measurements.
+
+Note that $$\alpha^2$$ is obtained by
+$$\langle 0 | \rho | 0\rangle = \tr(|0\rangle\langle0|\rho)$$.
+
+
+### A two qubit example
+
+A density matrix $$\rho$$ for two qubits takes the form
+
+$$
+\rho= \frac14\sum_{\alpha,\beta=0}^3 \rho_{\alpha\beta}\sigma^{\alpha\beta}.
+$$
+
+Remember that the probability of measuring a state is given by tracing
+the projection of the density onto the associated eigenspace.
+For example, the 2nd qubit in state-up
+is given by
+$$
+n_2(\uparrow_z) = \tr( \sigma^0 \otimes |0\rangle\langle0| \cdot \rho)
+$$.

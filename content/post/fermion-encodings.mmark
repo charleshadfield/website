@@ -1,0 +1,10 @@
+---
+title: "Fermion Encodings"
+date: 2020-01-10T11:18:58-05:00
+draft: true
+---
+
+This is a brief draft going over two principal encoding schemes.
+The Jordan-Wigner and (Superfast) Bravyi-Kitaev encodings.
+
+It should hopefully take about an hour to chat about these two encodings.

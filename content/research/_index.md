@@ -53,6 +53,11 @@ draft: false
 
 ## misc
 
+* *lectures on fermionic encodings*
+<a href="/pdf/misc_math/fermi-encode.pdf"><small>[notes]</small></a>
+</br>
+<small>notes on fermionic encodings of second-quantised Hamiltonians</small>
+
 * *lectures on quantum error correction:*
 [1](/pdf/misc_math/qec_lecture_1.pdf)
 [2](/pdf/misc_math/qec_lecture_2.pdf)
