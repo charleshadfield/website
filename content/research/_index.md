@@ -58,9 +58,7 @@ draft: false
 </br>
 <small>notes on fermionic encodings of second-quantised Hamiltonians</small>
 </br>
-<small>representation theory, Jordan-Wigner, Parity, Bravyi-Kitaev</small>
-</br>
-<small>to do: superfast/generalised BK, qubit tapering</small>
+<small>representation theory, Jordan-Wigner, Parity, Binary tree, Superfast, Generalised superfast, Tapering</small>
 
 * *lectures on quantum error correction:*
 [1](/pdf/misc_math/qec_lecture_1.pdf)
