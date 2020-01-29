@@ -55,6 +55,7 @@ draft: false
 
 * *lectures on fermionic encodings*
 <a href="/pdf/misc_math/fermi-encode.pdf"><small>[notes]</small></a>
+<a href="/pptx/fermi-encode.pptx"><small>[powerpoint]</small></a>
 </br>
 <small>notes on fermionic encodings of second-quantised Hamiltonians</small>
 </br>

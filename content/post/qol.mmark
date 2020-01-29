@@ -16,6 +16,18 @@ I am attempting to understand two papers
 
 and want to understand how a fermionic representation affects the results.
 
+# The problem of measurement for VQE
+
+The problem of measurement for VQE is not why the first paper was written.
+The paper may however help attack this problem which is now outlined.
+
+A subroutine of variational quantum eigensolvers is the following task.
+A state $$\psi$$ is prepared and we aim to evaluate $$E_\psi = \langle \psi | H | \psi \rangle$$.
+A fermionic encoding provides $$ H = \sum_i h_i P_i $$ for $$P_i \in \{\sigma^\alpha\}^{\otimes Q}$$
+so $$ E_\psi = \sum_i h_i \langle \psi | P_i | \psi \rangle $$ and the terms
+$$\langle \psi | P_i | \psi \rangle$$ are estimated by measuring $$\psi$$ in the $$P_i$$ basis.
+
+
 ## Some notation
 
 We consider qubits with (non-normalised) Pauli matrices $$\sigma^\alpha$$
@@ -83,3 +95,55 @@ is given by
 $$
 n_2(\uparrow_z) = \tr( \sigma^0 \otimes |0\rangle\langle0| \cdot \rho)
 $$.
+So if we aim to find a generic coefficient,
+e.g. $$\langle \sigma^{1,3}, \rho \rangle$$,
+we could obtain this through the following formula of measurements:
+
+$$
+\langle \sigma^{1,3}, \rho \rangle = \rho_{X,Z} = \tfrac1M ( n_{1,2}(\uparrow_x,\uparrow_z) - n_{1,2}(\uparrow_x,\downarrow_z) - n_{1,2}(\downarrow_x,\uparrow_z) + n_{1,2}(\downarrow_x,\downarrow_z) ).
+$$
+
+### The general formula
+
+It is straight-forward to deduce the general formula.
+Let's take $$\rho_A$$ and write $$|A| = \# \{ k | A_k \neq \sigma^0 \}$$ for the weight.
+Then $$\rho_A$$ is estimated by measuring once the qubits $$\{ k | A_k \neq \sigma^0 \}$$
+in the correct basis (multiplied by $$M$$ for statistical accuracy).
+Naively, this requires
+
+$$
+\# \{\sigma^\alpha\}^{\otimes Q} - 1 = \mathcal{O}(4^Q).
+$$
+
+Above, the $$-1$$ occurs because $$\rho_I$$ is guaranteed to be $$1$$.
+
+
+### A slightly smarter idea
+
+We should aim to reduce the measurement complexity
+$$
+\mathcal{O}(4^Q)
+$$
+by using structure special to the problem of interest.
+Some examples include:
+
+- our Hamiltonian is not totally general, it comes from molecular chemistry;
+- if two terms have disjoint Pauli support, they can be measured simultaneously;
+- ??? other ideas
+
+The second point reduces complexity to $$\mathcal{O}(3^Q)$$:
+Upon calculating $$\rho_A$$ we also obtain
+$$ \{ \rho_B | B_k=A_k \textrm{ or } B_k=\sigma^0 \}$$.
+So every time we measure the state, we should measure all qubits in one of the three Pauli bases.
+
+
+
+
+
+
+
+
+
+
+
+.
