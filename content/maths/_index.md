@@ -6,6 +6,11 @@ draft: false
 
 ## articles
 
+* *Ruelle zeta function from field theory* (with Santosh Kandel and Michele Schiavina)
+<a href="https://arxiv.org/abs/2002.???"><small>[arXiv]</small></a>
+</br>
+<small>submitted</small>
+
 * *Zeta function at zero for surfaces with boundary*
 <a href="/pdf/zeta-zero.pdf"><small>[pdf]</small></a>
 <a href="https://arxiv.org/abs/1803.10982"><small>[arXiv]</small></a>
