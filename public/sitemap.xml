@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://math.berkeley.edu/~hadfield/quantum/</loc>
+    <lastmod>2020-01-17T11:03:06-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://math.berkeley.edu/~hadfield/post/fourier/</loc>
     <lastmod>2020-01-07T16:53:24-05:00</lastmod>
   </url>
@@ -43,7 +48,7 @@
   </url>
   
   <url>
-    <loc>https://math.berkeley.edu/~hadfield/research/</loc>
+    <loc>https://math.berkeley.edu/~hadfield/maths/</loc>
     <lastmod>2019-08-20T12:27:59-07:00</lastmod>
   </url>
   

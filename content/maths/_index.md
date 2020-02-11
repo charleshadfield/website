@@ -7,7 +7,7 @@ draft: false
 ## articles
 
 * *Ruelle zeta function from field theory* (with Santosh Kandel and Michele Schiavina)
-<a href="https://arxiv.org/abs/2002.???"><small>[arXiv]</small></a>
+<a href="https://arxiv.org/abs/2002.03952"><small>[arXiv]</small></a>
 </br>
 <small>submitted</small>
 

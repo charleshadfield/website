@@ -8,10 +8,14 @@ draft: false
 
 * *lectures on fermionic encodings*
 <a href="/pdf/misc_math/fermi-encode.pdf"><small>[notes]</small></a>
-<a href="/pptx/fermi-encode.pptx"><small>[powerpoint]</small></a></br>
+<a href="/pptx/fermi-encode.pptx"><small>[powerpoint]</small></a>
+</br>
 <small>notes on fermionic encodings of second-quantised Hamiltonians</small>
 </br>
 <small>representation theory, Jordan-Wigner, Parity, Binary tree, Superfast, Generalised superfast, Tapering</small>
+</br>
+<small>course given at: IBM New York (January 2020), Keio University Tokyo (February 2020)</small>
+
 
 * *lectures on quantum error correction:*
 [1](/pdf/misc_math/qec_lecture_1.pdf)
