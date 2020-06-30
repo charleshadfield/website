@@ -4,6 +4,13 @@ date: 2020-01-17T11:03:06-05:00
 draft: false
 ---
 
+## articles
+
+* *Measurements of quantum Hamiltonians with locally-biased classical shadows* (with Sergey Bravyi, Rudy Raymond, Antonio Mezzacapo)
+<a href="https://arxiv.org/abs/2006.15788"><small>[arXiv]</small></a>
+</br>
+<small>arXiv</small>
+
 ## misc
 
 * *lectures on fermionic encodings*

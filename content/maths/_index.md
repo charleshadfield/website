@@ -9,7 +9,7 @@ draft: false
 * *Spectral theory of the frame flow on hyperbolic 3-manifolds* (appendix provided for article by Colin Guillarmou and Benjamin Küster)
 <a href="https://arxiv.org/abs/2005.08387"><small>[arXiv]</small></a>
 </br>
-<small>arXiv</small>
+<small>submitted</small>
 
 * *Ruelle zeta function from field theory* (with Santosh Kandel and Michele Schiavina)
 <a href="https://arxiv.org/abs/2002.03952"><small>[arXiv]</small></a>
