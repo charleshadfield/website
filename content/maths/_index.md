@@ -14,13 +14,12 @@ draft: false
 * *Ruelle zeta function from field theory* (with Santosh Kandel and Michele Schiavina)
 <a href="https://arxiv.org/abs/2002.03952"><small>[arXiv]</small></a>
 </br>
-<small>submitted</small>
+<small>Annales Henri Poincaré</small>
 
 * *Zeta function at zero for surfaces with boundary*
-<a href="/pdf/zeta-zero.pdf"><small>[pdf]</small></a>
 <a href="https://arxiv.org/abs/1803.10982"><small>[arXiv]</small></a>
 </br>
-<small>submitted, pdf link is newer than arxiv submission, several clarifications have occurred in section 4</small>
+<small>updated version to appear in journal (accepted)</small>
 
 * *Ruelle and quantum resonances for open hyperbolic manifolds*
 <a href="https://arxiv.org/abs/1708.01200"><small>[arXiv]</small></a>

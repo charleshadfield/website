@@ -9,9 +9,15 @@ draft: false
 * *Measurements of quantum Hamiltonians with locally-biased classical shadows* (with Sergey Bravyi, Rudy Raymond, Antonio Mezzacapo)
 <a href="https://arxiv.org/abs/2006.15788"><small>[arXiv]</small></a>
 </br>
-<small>arXiv</small>
+<small>submitted</small>
 
 ## misc
+
+* *variance for biased classical shadows*
+<a href="/pdf/misc_math/bcs.pdf"><small>[calculation]</small></a>
+</br>
+<small>calculation of moments for classical shadows for arbitrary probability distributions</small>
+
 
 * *lectures on fermionic encodings*
 <a href="/pdf/misc_math/fermi-encode.pdf"><small>[notes]</small></a>
