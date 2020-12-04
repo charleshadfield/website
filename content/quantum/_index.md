@@ -13,14 +13,21 @@ draft: false
 
 ## misc
 
+* *lecture on dimensional reduction*
+<a href="/pdf/quantum/sfa.pdf"><small>[exposé]</small></a>
+</br>
+<small>notes on dimensional reduction in quantum machine learning</small>
+</br>
+<small>course given virtually for: QML workshop (December 2020)</small>
+
 * *variance for biased classical shadows*
-<a href="/pdf/misc_math/bcs.pdf"><small>[calculation]</small></a>
+<a href="/pdf/quantum/bcs.pdf"><small>[calculation]</small></a>
 </br>
 <small>calculation of moments for classical shadows for arbitrary probability distributions</small>
 
 
 * *lectures on fermionic encodings*
-<a href="/pdf/misc_math/fermi-encode.pdf"><small>[notes]</small></a>
+<a href="/pdf/quantum/fermi-encode.pdf"><small>[notes]</small></a>
 <a href="/pptx/fermi-encode-v2.pptx"><small>[powerpoint]</small></a>
 </br>
 <small>notes on fermionic encodings of second-quantised Hamiltonians</small>
@@ -31,19 +38,19 @@ draft: false
 
 
 * *lectures on quantum error correction:*
-[1](/pdf/misc_math/qec_lecture_1.pdf)
-[2](/pdf/misc_math/qec_lecture_2.pdf)
-[3](/pdf/misc_math/qec_lecture_3.pdf)
-[4](/pdf/misc_math/qec_lecture_4.pdf)
+[1](/pdf/quantum/qec_lecture_1.pdf)
+[2](/pdf/quantum/qec_lecture_2.pdf)
+[3](/pdf/quantum/qec_lecture_3.pdf)
+[4](/pdf/quantum/qec_lecture_4.pdf)
 </br>
 <small>four lectures ending with an explanation of lattice surgery</small>
 
 * *diamond norm*
-<a href="/pdf/misc_math/diamond_norm.pdf"><small>[exposé]</small></a>
+<a href="/pdf/quantum/diamond_norm.pdf"><small>[exposé]</small></a>
 </br>
 <small>an exposé on the diamond norm in quantum information from an operational viewpoint</small>
 
 * *perturbative gadgets*
-<a href="/pdf/misc_math/rigetti_interview.pdf"><small>[exposé]</small></a>
+<a href="/pdf/quantum/rigetti_interview.pdf"><small>[exposé]</small></a>
 </br>
 <small>an exposé describing the perturbation theory surrounding perturbative gadgets</small>
