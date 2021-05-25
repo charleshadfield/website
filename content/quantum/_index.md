@@ -6,6 +6,21 @@ draft: false
 
 ## articles
 
+* *Adaptive Pauli shadows for energy estimation*
+<a href="https://arxiv.org/abs/2105.???"><small>[arXiv]</small></a>
+</br>
+<small>submitted</small>
+
+* *Decision diagrams for quantum measurements with shallow circuits* (with Stefan Hillmich, Rudy Raymond, Antonio Mezzacapo, Robert Wille)
+<a href="https://arxiv.org/abs/2105.06932"><small>[arXiv]</small></a>
+</br>
+<small>submitted</small>
+
+* *Doubling the size of quantum simulators by entanglement forging* (with Andrew Eddins, Mario Motta, Tanvi Gujarati, Sergey Bravyi, Antonio Mezzacapo, Sarah Sheldon)
+<a href="https://arxiv.org/abs/2104.10220"><small>[arXiv]</small></a>
+</br>
+<small>submitted</small>
+
 * *Measurements of quantum Hamiltonians with locally-biased classical shadows* (with Sergey Bravyi, Rudy Raymond, Antonio Mezzacapo)
 <a href="https://arxiv.org/abs/2006.15788"><small>[arXiv]</small></a>
 </br>

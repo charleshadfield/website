@@ -19,7 +19,9 @@ draft: false
 * *Zeta function at zero for surfaces with boundary*
 <a href="https://arxiv.org/abs/1803.10982"><small>[arXiv]</small></a>
 </br>
-<small>updated version to appear in journal (accepted)</small>
+<small>final version available
+<a href="/pdf/misc_math/zeta-zero.pdf">[here]</a>
+</small>
 
 * *Ruelle and quantum resonances for open hyperbolic manifolds*
 <a href="https://arxiv.org/abs/1708.01200"><small>[arXiv]</small></a>
