@@ -8,11 +8,13 @@ draft: false
 
 * *Adaptive Pauli shadows for energy estimation*
 <a href="https://arxiv.org/abs/2105.12207"><small>[arXiv]</small></a>
+<a href="https://github.com/charleshadfield/adaptiveshadows"><small>[github]</small></a>
 </br>
 <small>submitted</small>
 
 * *Decision diagrams for quantum measurements with shallow circuits* (with Stefan Hillmich, Rudy Raymond, Antonio Mezzacapo, Robert Wille)
 <a href="https://arxiv.org/abs/2105.06932"><small>[arXiv]</small></a>
+<a href="https://github.com/hillmich/dd-pauli-sampling"><small>[github]</small></a>
 </br>
 <small>submitted</small>
 
@@ -23,6 +25,7 @@ draft: false
 
 * *Measurements of quantum Hamiltonians with locally-biased classical shadows* (with Sergey Bravyi, Rudy Raymond, Antonio Mezzacapo)
 <a href="https://arxiv.org/abs/2006.15788"><small>[arXiv]</small></a>
+<a href="https://github.com/charleshadfield/variances"><small>[github]</small></a>
 </br>
 <small>submitted</small>
 
