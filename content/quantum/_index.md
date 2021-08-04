@@ -9,6 +9,7 @@ draft: false
 * *Adaptive Pauli shadows for energy estimation*
 <a href="https://arxiv.org/abs/2105.12207"><small>[arXiv]</small></a>
 <a href="https://github.com/charleshadfield/adaptiveshadows"><small>[github]</small></a>
+<a href="/pdf/quantum/aps.pdf"><small>[exposé]</small></a>
 </br>
 <small>submitted</small>
 
