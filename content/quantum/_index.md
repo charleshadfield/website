@@ -6,6 +6,9 @@ draft: false
 
 ## articles
 
+* *Second-quantized fermionic Hamiltonians for quantum simulation with polylogarithmic qubit and gate complexity* (intern project of Will Kirby)
+<a href="https://arxiv.org/abs/2109.14465"><small>[arXiv]</small></a>
+
 * *Adaptive Pauli shadows for energy estimation*
 <a href="https://arxiv.org/abs/2105.12207"><small>[arXiv]</small></a>
 <a href="https://github.com/charleshadfield/adaptiveshadows"><small>[github]</small></a>
@@ -17,7 +20,7 @@ draft: false
 <a href="https://arxiv.org/abs/2105.06932"><small>[arXiv]</small></a>
 <a href="https://github.com/hillmich/dd-pauli-sampling"><small>[github]</small></a>
 </br>
-<small>submitted</small>
+<small>accepted</small>
 
 * *Doubling the size of quantum simulators by entanglement forging* (with Andrew Eddins, Mario Motta, Tanvi Gujarati, Sergey Bravyi, Antonio Mezzacapo, Sarah Sheldon)
 <a href="https://arxiv.org/abs/2104.10220"><small>[arXiv]</small></a>
@@ -28,7 +31,7 @@ draft: false
 <a href="https://arxiv.org/abs/2006.15788"><small>[arXiv]</small></a>
 <a href="https://github.com/charleshadfield/variances"><small>[github]</small></a>
 </br>
-<small>submitted</small>
+<small>Communications in Mathematical Physics</small>
 
 ## misc
 
