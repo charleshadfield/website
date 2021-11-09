@@ -6,6 +6,10 @@ draft: false
 
 ## articles
 
+* *Approximate Optimization Algorithms with Quantum Hamiltonian Relaxation* (algorithm built in 2020 for playing with MaxCut on small quantum computers)
+<a href="https://arxiv.org/abs/2111.03167"><small>[arXiv]</small></a>
+<a href="/pptx/quantum-relaxation.pptx"><small>[exposé]</small></a>
+
 * *Second-quantized fermionic Hamiltonians for quantum simulation with polylogarithmic qubit and gate complexity* (intern project of Will Kirby)
 <a href="https://arxiv.org/abs/2109.14465"><small>[arXiv]</small></a>
 
@@ -14,7 +18,6 @@ draft: false
 <a href="https://github.com/charleshadfield/adaptiveshadows"><small>[github]</small></a>
 <a href="/pdf/quantum/aps.pdf"><small>[exposé]</small></a>
 </br>
-<small>submitted</small>
 
 * *Decision diagrams for quantum measurements with shallow circuits* (with Stefan Hillmich, Rudy Raymond, Antonio Mezzacapo, Robert Wille)
 <a href="https://arxiv.org/abs/2105.06932"><small>[arXiv]</small></a>
