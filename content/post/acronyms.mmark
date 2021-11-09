@@ -1,0 +1,52 @@
+---
+title: "Acronyms"
+date: 2021-10-10T00:02:03-04:00
+draft: true
+---
+
+## Market Structures
+| Short | Long | |
+| --- | --- | --- |
+| DTC | Depository Trust and Clearing Corporation | |
+| nscc | National Securities Clearing Corporation | |
+| NASD | National Association of Securities Dealers | |
+| OCC | Options Clearing Corporation |
+| SEC | Securities and Exchange Commission | |
+
+
+
+## Exchanges
+
+| Short | Long | Misc |
+| --- | --- | --- |
+| CBOT | Chicago Board of Trade | |
+| CME | Chicago Mercantile Exchange | |
+| botcc | Board of Trade Clearing Corporation | BfeS SfeB |
+| NYSE | New York Stock Exchange | |
+| PEx | Pacific Exchange | |
+| poets | Pacific Options Exchange Trading System | |
+| POSIT | Porfolio System for Institutional Trading | confidential, matches 8 times daily |
+
+## Instruments
+
+| Short | Long |
+| --- | --- |
+| ADR | American depository receipts |
+| CMO | Collateralized mortgage obligations |
+| ETF | Exchange traded fund |
+| REIT | Real estate investment trust |
+
+## Instrument instances
+
+| Short | Description |
+| --- | --- |
+| S&P 500 | Index (equities) |
+
+## Players
+
+| Agent | Description |
+| --- | --- |
+| Brown & Company | deep-discount broker |
+| Cantor Fitzgerald | bond market |
+| Merrill Lynch | broker/dealer |
+| Charles Schwab | discount broker |
